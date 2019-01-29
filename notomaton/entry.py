@@ -21,8 +21,8 @@ def entry():
 
 def main():
     issues = get_issues(config.runtime.project, config.runtime.version)
-	text = render_template(config.runtime.template, notes=issues)
+    text = render_template(config.runtime.template, notes=issues)
     if config.runtime.output is not None:
-		config.runtime.output.write(text)
-	else:
-		print(text)
+        config.runtime.output.write(text)
+    else:
+        print(text)
