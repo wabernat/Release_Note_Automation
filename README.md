@@ -40,7 +40,8 @@ When setup is complete, query the Jira database with:
 Which produces search results in tabular format to stdout. 
 
 For example: 
-   `notomaton --user william.abernathy@scality.com --token <1234big-ass-hash56789> --project RING \--version 7.4.3 > ~/Desktop/RING_7.4.3.html`
+
+   `notomaton --user william.abernathy@scality.com --token <1234big-ass-hash56789> --project RING --version 7.4.3 > ~/Desktop/RING_7.4.3.html`
 
 (You can change the project to S3C or the version number to whatever. 
 Zenko has a peculiar numbering scheme: "ZENKO PSI 1.1", for example.)
