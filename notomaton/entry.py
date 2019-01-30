@@ -13,12 +13,16 @@ def entry():
         main()
     except Exception as e:
         if config.logging.loglvl == logging.DEBUG:
-            raise(e)
+            _log.exception(e)
         else:
-            print('Error!')
+            _log.critical('Error!')
         sys.exit(1)
 
 
 def main():
     issues = get_issues(config.runtime.project, config.runtime.version)
-    print(render_template(config.runtime.template, notes=issues))
+    text = render_template(config.runtime.template, notes=issues)
+    if config.runtime.output is not None:
+        config.runtime.output.write(text)
+    else:
+        print(text)

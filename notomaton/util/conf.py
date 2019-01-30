@@ -46,7 +46,8 @@ APP_DEFAULTS = {
     'runtime': {
         'project': None,
         'template': 'simple',
-        'version': None
+        'version': None,
+		'output': None
     }
 }
 
