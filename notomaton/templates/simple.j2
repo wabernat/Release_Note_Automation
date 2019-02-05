@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="311" MadCap:lastWidth="648">
+<html>
 
 <head> </head>
 
 <body>
-    <h2 MadCap:autonum="1.1 &#160;">Fixed Issues</h2>
-    <table style="mc-table-style: url('Resources/TableStyles/DetailedwithPadding.css');" class="TableStyle-DetailedwithPadding" cellspacing="0">
+    <h2>Fixed Issues</h2>
+    <table>
         <thead>
             <tr>
                 <td>Key</td>
@@ -17,17 +17,14 @@
 
         {% for item in notes %}
         <tr>
-            <td>{{ item.key }}</td> <!--Key-->
-            <td>{{ item.severity }}</td> <!--Severity-->
-            <!--Components-->
-            <td>&#160;</td>
+            <td>{{ item.key }}</td> 
+            <td>{{ item.severity }}</td> 
             <td>
                 <p>
                     {{ item.components|join(' ') }}
-                    &#160;
                 </p>
             </td>
-            <td>{{ item.description }}</td> <!--description-->
+            <td>{{ item.description }}</td>
         </tr>
         {% endfor %}
 
