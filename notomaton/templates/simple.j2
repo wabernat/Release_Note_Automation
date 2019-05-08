@@ -4,21 +4,21 @@
 <head> </head>
 
 <body>
-    <h2>Fixed Issues</h2>
+    <h2>{{ issue_type }} Issues</h2>
     <table>
         <thead>
             <tr>
                 <td>Key</td>
                 <td>Severity</td>
                 <td>Component(s)</td>
-                <td>Description</td>
+                <td>Release Notes Description</td>
             </tr>
         </thead>
 
         {% for item in notes %}
         <tr>
-            <td>{{ item.key }}</td> 
-            <td>{{ item.severity }}</td> 
+            <td>{{ item.key }}</td>
+            <td>{{ item.severity }}</td>
             <td>
                 <p>
                     {{ item.components|join(' ') }}
