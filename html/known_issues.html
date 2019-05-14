@@ -1,0 +1,526 @@
+<h1>Known Issues</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Key</td>
+                <td>Severity</td>
+                <td>Component(s)</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+
+        
+        <tr>
+            <td>S3C-2015</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    S3
+                </p>
+            </td>
+            <td>A GET bucket request to S3 server that contains more than one "prefix=" or more than one "marker=" query parameter crashes the repd process answering the request. 
+Fix Applied: Take the first "prefix=" or "query=" parameter, if multiple ones are passed in the query string.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-2010</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td> </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-2006</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Arsenal
+                </p>
+            </td>
+            <td>Vault crashes due to an incompatibility with Vault-md (metadata) containers.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1985</td> 
+            <td>Critical</td> 
+            <td>
+                <p>
+                    Arsenal Metadata S3
+                </p>
+            </td>
+            <td>Metadata storage replication layer crashes on listings that contain keys created with lots of parts (uploaded through MPU), due to an overuse or memory, compared to Node.js default limitations.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1959</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    S3
+                </p>
+            </td>
+            <td>When Metadata is unstable, retries of Complete MPU request could compose an object while deleting data keys of the object</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1950</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>To start, the Docker service unit requires disk mount units defined in env_metadata_bucket_datapaths. On stateless nodes, where these disks do not exist, this requirement prevents Docker from correctly starting and stopping.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1945</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>During an upgrade from 6.4 to 7.4.2, the databases are not properly migrated when both stateless and stateful components are installed on the same servers.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1934</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Federation Metadata
+                </p>
+            </td>
+            <td> </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1918</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Documentation
+                </p>
+            </td>
+            <td> </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1902</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Metadata
+                </p>
+            </td>
+            <td>During a rolling upgrade from 6.4 to 7.4, when the stateless nodes are in a mixed version situation the creating of a bucket through a 7.4 stateless server can lead to crashes of the 6.4 stateless servers (which cannot restart until the bucket is removed).</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1886</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Backbeat
+                </p>
+            </td>
+            <td>A condition in the code leads to some metrics events being skipped instead of being correctly published to Kafka, which can cause incorrect metrics readings (CRR operation count, CRR bytes transferred).</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1861</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Documentation S3
+                </p>
+            </td>
+            <td>Logs no longer appear on the console.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1847</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Log shipper component does not have access to logs. </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1820</td> 
+            <td>Critical</td> 
+            <td>
+                <p>
+                    Backbeat
+                </p>
+            </td>
+            <td>One fail entry blocks all replications for a location until entry marked as failed (Refer to ZENKO-860).</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1809</td> 
+            <td>Critical</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>During upgrade to version 7.2, metadata containers are not stopped correctly before database migration, possibly resulting in database corruption.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1804</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Sproxyd updated to 6.4.6.0.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1781</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Encrypted volume for Vault master key did not automatically mount at boot time.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1750</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Vault
+                </p>
+            </td>
+            <td>A tool developed to help rationalize account/user deletion broke when encrypted credentials were introduced.
+
+The tool is now fixed. It either takes credentials as a json file or takes credentials as input and removes broken links.
+
+Readme link: https://github.com/scality/Federation/blob/development/6.4/tooling-playbooks/migration/README.md#remove-broken-links</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1746</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Kudzu
+                </p>
+            </td>
+            <td>The Python requests module provided by the Ubuntu 14.04 repositories is not working properly on the latest version due to urllib3 having dropped support for Python 2.6.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1728</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Vault
+                </p>
+            </td>
+            <td>Vault installation fails due to a bug in the admin credentials encryption mechanism.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1718</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    bucketclient Federation S3
+                </p>
+            </td>
+            <td>Fixes "NoSuchBucket" error on 6.4.7-to-7.4 S3C upgrades.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1710</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Fixed WSB disruption of S3C 6.4.7->7.4.1.2 migration.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1702</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td> Upgrade was not possible due to a bug in data directory checks.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1685</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>On the S3C v.7.4.1.3 release, Identisee became unable to read Vault credentials because they were encrypted during Vault configuration.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1638</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Vault and S3 metadata volumes have a constraint about the basename of the mountpoint which is not compatible with RING mountpoints when there are several SSDs.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1623</td> 
+            <td>Minor</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Extraneous and unused data was copied during docker images builds</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1610</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Gathering metrics consumed too much CPU in heavily loaded S3 connectors.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1609</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Backbeat
+                </p>
+            </td>
+            <td>See ZENKO-860 RN</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1589</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    S3
+                </p>
+            </td>
+            <td>Sensitive information (e.g., access-key, secret-key) is making its way into ansible.log, which may pose potential security threats.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1562</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Metadata
+                </p>
+            </td>
+            <td>The pruning feature consumes inordinate CPU/network resources when activated on a platform with an important existing dataset.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1550</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Backbeat
+                </p>
+            </td>
+            <td>Incomplete polling of raft sessions.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1541</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Vault
+                </p>
+            </td>
+            <td>A configuration option has been added to choose one or multiple cryptographic protocols for Vault SAML.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1509</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    IAM GUI Identisee S3Console
+                </p>
+            </td>
+            <td>The Identisee API routes beginning with /s3 and /version were not routed properly by NGINX. This prevented the API version from being displayed in the UI footer, and with builds that include S3/Utapi information, the "Buckets" section for an account would not resolve.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1491</td> 
+            <td>Major</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>The script that creates superadmin console credentials was not run with proper permissions.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1490</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Metadata Vault
+                </p>
+            </td>
+            <td>A misordering of hosts in the Metadata service's internal data may make the vault or bucketd services unavailable on an upgrade.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1486</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Installation and upgrades failed when Backbeat was enabled along with stateless-only servers. </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1483</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Documentation
+                </p>
+            </td>
+            <td> Incomplete server requirement information was entered in S3 Connector Installation Guide 7.4.0.
+Requirements for both RING-integrated and freestanding S3 Connector instances are entered in the 7.4.0.3 Installation Guide.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1482</td> 
+            <td>Blocker</td> 
+            <td>
+                <p>
+                    Identisee S3Console
+                </p>
+            </td>
+            <td>The web application did not have access to the configuration while running in the browser. Identisee has been updated to sync UI login credentials across nodes via the API which uses the configuration set during deployment.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1476</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td> Change the way offline dependencies are handled in the offline builds.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1473</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Backbeat
+                </p>
+            </td>
+            <td>TBD</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1451</td> 
+            <td>Critical</td> 
+            <td>
+                <p>
+                    Metadata S3
+                </p>
+            </td>
+            <td>A background process of Metadata/Repd was mishandling communication with sproxyd, triggering a TCP memory leak.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1429</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Sproxyd updated to 7.4.x versions.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1419</td> 
+            <td>Minor</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>The assign-server-id role is run even though backbeat is disabled.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1401</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td>Old scality-metadata and scality-metadata-vault Docker containers still run during upgrade.</td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1396</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    S3
+                </p>
+            </td>
+            <td>GET and HEAD object requests include empty WebsiteRedirectLocation header even if not set on the object. </td>
+        </tr>
+        
+        <tr>
+            <td>S3C-1178</td> 
+            <td>Medium</td> 
+            <td>
+                <p>
+                    Federation
+                </p>
+            </td>
+            <td> Fixed Kazoo requirement for online install.</td>
+        </tr>
+    </table>
+
