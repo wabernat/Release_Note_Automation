@@ -2,7 +2,7 @@ import logging
 import sys
 
 from .jira import get_known, get_fixed
-from .render import render_template
+from .render import render_html
 from .util.conf import config
 from .util.log import Log
 from .util.prompt import prompt
@@ -25,13 +25,16 @@ def main():
     conf = prompt(['project', 'version'])
     known_issues = get_known(conf['project'].upper(), conf['version'])
     fixed_issues = get_fixed(conf['project'].upper(), conf['version'])
-    conf['type'] = 'known'
-    with open(FILENAME_TMPL.format(**conf), 'w') as f:
-        f.write(
-            render_template(config.runtime.template, notes=known_issues)
-        )
-    conf['type'] = 'fixed'
-    with open(FILENAME_TMPL.format(**conf), 'w') as f:
-        f.write(
-            render_template(config.runtime.template, notes=fixed_issues)
-        )
+    rendered = render_html(conf, known_issues, fixed_issues)
+    with open('test.html', 'w') as f:
+        f.write(rendered)
+    # conf['type'] = 'known'
+    # with open(FILENAME_TMPL.format(**conf), 'w') as f:
+    #     f.write(
+    #         render_template(config.runtime.template, notes=known_issues)
+    #     )
+    # conf['type'] = 'fixed'
+    # with open(FILENAME_TMPL.format(**conf), 'w') as f:
+    #     f.write(
+    #         render_template(config.runtime.template, notes=fixed_issues)
+    #     )

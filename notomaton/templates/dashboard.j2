@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+
+    <head>
+        <title>
+            Release Notes Dashboard
+        </title>
+        <style>{{ style }}</style>
+    </head>
+
+    <body>
+        <h1>
+            Release Notes Dashboard
+        </h1>
+        Product:
+        <input type="text" id="project">
+        Version:
+        <input type="text", id="version">
+        <button id="fetchIssues">Get Issues</button>
+        <button id="fetchIssues">Generate Release Notes</button>
+
+        <div id="issues"></div>
+
+
+        <script>
+            function reqListener () {
+                console.log(this.responseText);
+                document.getElementById("issues").innerHTML = this.responseText;
+            }
+
+            function getIssues() {
+                const project = document.getElementById("project").value;
+                const version = document.getElementById("version").value;
+                const oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", reqListener);
+                oReq.open("GET", `/_/issues?project=${project}&version=${version}`);
+                oReq.send();
+            }
+            document.getElementById("fetchIssues").addEventListener("click", getIssues);
+        </script>
+    </body>
+</html>

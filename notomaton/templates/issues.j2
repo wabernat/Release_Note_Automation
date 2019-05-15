@@ -1,0 +1,27 @@
+<h2>{{ issue_type }} Issues</h2>
+{% if issues %}
+<table>
+    <thead>
+        <tr>
+            <td>Key</td>
+            <td>Severity</td>
+            <td>Component(s)</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+
+    {% for item in issues %}
+    <tr>
+        <td>{{ item.key }}</td>
+        <td>{{ item.severity }}</td>
+        <td>
+            <p>{{ item.components|join(' ') }}</p>
+        </td>
+        <td>{{ item.description }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% else %}
+No {{ issue_type }}Issues
+{% endif %}

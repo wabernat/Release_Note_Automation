@@ -216,9 +216,9 @@ for directory in _SEARCH_DIRS:
 
 _FILEPATHS = [fn for fn in _FILEPATHS if fn.exists()]
 
-@loader()
-def cli_loader():
-	return parse_args(pkg_name)
+# @loader()
+# def cli_loader():
+# 	return parse_args(pkg_name)
 
 def load_config(modconf):
 	# Sort out our defaults
