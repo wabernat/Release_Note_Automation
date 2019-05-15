@@ -4,16 +4,20 @@ from .render import render_template, render_pdf, render_html
 from .jira import get_fixed, get_known
 from .assets import get_asset
 import io
+from .util.auth import requires_auth
+
 @app.route('/')
 def redirect_to_dashboard():
     return redirect('/dashboard')
 
 @app.route("/dashboard")
+@requires_auth
 def dashboard():
     return render_template('dashboard', style=get_asset('style'))
 
 
 @app.route('/_/render', methods=['GET'])
+@requires_auth
 def render():
     known = get_known(request.args['project'].lower(), request.args['version'])
     fixed = get_fixed(request.args['project'].lower(), request.args['version'])
@@ -41,6 +45,7 @@ def render():
 
 
 @app.route('/_/issues', methods=['GET'])
+@requires_auth
 def issues():
     try:
         known = get_known(request.args['project'].lower(), request.args['version'])

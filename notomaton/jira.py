@@ -1,6 +1,6 @@
 from collections import namedtuple
 from pprint import pprint
-
+from itertools import chain
 from jira import JIRA
 
 from .util.conf import config
@@ -48,6 +48,7 @@ def _parse_version(ver):
         return None
 
 def _get_issues(query):
+    _log.info('Using jql %s'%query)
     for ticket in _get_jira().search_issues(query):
         yield Ticket(
             ticket.key, # Ticket ID eg ZENKO-1234
@@ -57,22 +58,27 @@ def _get_issues(query):
             [v.name for v in ticket.fields.fixVersions] # Fix version
         )
 
-def _get_issues_zenko(query, version):
+def _get_issues_zenko(version, fixed):
+    query = _build_jql('zenko', version, fixed)
     to_meet = _parse_version(version)
-    for ticket in _get_issues(query):
-        for v in ticket.fix_versions:
+    for ticket in _get_issues(query):  # Zenko has alphanumeric versions
+        for v in ticket.fix_versions:  # in addition to semantic, so we manually check
             ticket_version = _parse_version(v)
             if ticket_version is not None and ticket_version >= to_meet:
                 yield ticket
                 break
 
+def _get_issues_s3c(version, fixed):
+    for p in ['s3c', 'md']: # S3C release notes contain Metadata tickets too
+        query = _build_jql(p, version, fixed)
+        for t in _get_issues(query):
+            yield t
+
 def get_issues(project, version, fixed):
-    query = _build_jql(project, version, fixed)
-    _log.info('Using jql %s'%query)
     if project == 'zenko':
-        issues = _get_issues_zenko(query, version)
-    else:
-        issues =_get_issues(query)
+        issues = _get_issues_zenko(version, fixed)
+    elif project == 's3c':
+        issues =_get_issues_s3c(version, fixed)
     return list(
         sorted(issues, key=lambda i: i.severity)
     )
