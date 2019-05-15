@@ -63,7 +63,6 @@ def _get_issues_zenko(query, version):
         for v in ticket.fix_versions:
             ticket_version = _parse_version(v)
             if ticket_version is not None and ticket_version >= to_meet:
-                print(ticket_version, to_meet)
                 yield ticket
                 break
 
@@ -71,8 +70,12 @@ def get_issues(project, version, fixed):
     query = _build_jql(project, version, fixed)
     _log.info('Using jql %s'%query)
     if project == 'zenko':
-        return list(_get_issues_zenko(query, version))
-    return list(_get_issues(query))
+        issues = _get_issues_zenko(query, version)
+    else:
+        issues =_get_issues(query)
+    return list(
+        sorted(issues, key=lambda i: i.severity)
+    )
 
 def get_known(project, version):
     return get_issues(project, version, False)

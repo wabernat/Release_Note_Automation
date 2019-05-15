@@ -1,4 +1,4 @@
-<h2>{{ issue_type }} Issues</h2>
+<h2>{{ issue_type | capitalize }} Issues</h2>
 {% if issues %}
 <table>
     <thead>
@@ -23,5 +23,5 @@
 
 </table>
 {% else %}
-No {{ issue_type }}Issues
+No {{ issue_type }} Issues
 {% endif %}

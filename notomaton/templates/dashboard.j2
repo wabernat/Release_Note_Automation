@@ -17,7 +17,8 @@
         Version:
         <input type="text", id="version">
         <button id="fetchIssues">Get Issues</button>
-        <button id="fetchIssues">Generate Release Notes</button>
+        <button id="renderNotesPDF">Generate Release Notes PDF</button>
+        <button id="renderNotesHTML">Generate Release Notes HTML</button>
 
         <div id="issues"></div>
 
@@ -28,7 +29,7 @@
                 document.getElementById("issues").innerHTML = this.responseText;
             }
 
-            function getIssues() {
+            function fetchIssues() {
                 const project = document.getElementById("project").value;
                 const version = document.getElementById("version").value;
                 const oReq = new XMLHttpRequest();
@@ -36,7 +37,30 @@
                 oReq.open("GET", `/_/issues?project=${project}&version=${version}`);
                 oReq.send();
             }
-            document.getElementById("fetchIssues").addEventListener("click", getIssues);
+
+            function downloadFile() {
+                const blob = this.response;
+                const fileName = this.getResponseHeader("fileName") //if you have the fileName header available
+                const link=document.createElement('a');
+                link.href=window.URL.createObjectURL(blob);
+                link.download=fileName;
+                link.click();
+            }
+
+            function openInNewTab(url) {
+                var win = window.open(url, '_blank');
+                win.focus();
+            }
+
+            function renderNotes(format) {
+                const project = document.getElementById("project").value;
+                const version = document.getElementById("version").value;
+                openInNewTab(`/_/render?project=${project}&version=${version}&format=${format}`);
+            }
+
+            document.getElementById("fetchIssues").addEventListener("click", fetchIssues);
+            document.getElementById("renderNotesPDF").addEventListener("click", () => renderNotes('pdf'));
+            document.getElementById("renderNotesHTML").addEventListener("click", () => renderNotes('html'));
         </script>
     </body>
 </html>
