@@ -39,8 +39,8 @@ BUILTIN_DEFAULTS = {
 # Overrides BUILT_IN_DEFAULTS
 APP_DEFAULTS = {
     'jira': {
-        'user': None,
-        'token': None,
+        'user': 'william.abernathy@scality.com',
+        'token':  'eRj4mmmkM0YHYqtEyoQP9FC2',
         'server': 'https://scality.atlassian.net'
     },
     'runtime': {
