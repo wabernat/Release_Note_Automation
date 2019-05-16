@@ -1,7 +1,0 @@
-This is introductory text. The new product is amazing. It does the following cool things:
-
-- Makes coffee
-- Changes the oil in your truck
-- Defeats ninjas
-
-We have lots of text, and it's all fabulous. 
