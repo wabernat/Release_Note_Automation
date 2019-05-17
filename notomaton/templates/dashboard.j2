@@ -22,8 +22,8 @@
         Version:
         <input type="text", id="version">
         <button id="fetchIssues">Get Issues</button>
-        <button id="renderNotesPDF">Generate Release Notes PDF</button>
         <button id="renderNotesHTML">Generate Release Notes HTML</button>
+        <button id="renderNotesPDF">Generate Release Notes PDF</button>
 
         <div id="issues"></div>
 
@@ -64,8 +64,9 @@
             }
 
             document.getElementById("fetchIssues").addEventListener("click", fetchIssues);
-            document.getElementById("renderNotesPDF").addEventListener("click", () => renderNotes('pdf'));
             document.getElementById("renderNotesHTML").addEventListener("click", () => renderNotes('html'));
+            document.getElementById("renderNotesPDF").addEventListener("click", () => renderNotes('pdf'));
+
         </script>
     </body>
 </html>

@@ -12,7 +12,7 @@
 
     {% for item in issues %}
     <tr>
-        <td>{{ item.key }}</td>
+        <td><a href="https://scality.atlassian.net/browse/{{ item.key }}>{{ item.key }}</td>
         <td>{{ item.severity }}</td>
         <td>
             <p>{{ item.components|join(' ') }}</p>
