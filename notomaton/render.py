@@ -14,13 +14,14 @@ def render_template(name, **kwargs):
 def render_html(conf, known, fixed):
     rknown = render_template('issues', issues=known, issue_type='known', **conf)
     rfixed = render_template('issues', issues=fixed, issue_type='fixed', **conf)
+    conf['product'] = conf['project']
     return render_template(
         'release_notes',
-        introduction=get_asset('introduction'),
+        introduction=get_template('introduction').render(**conf),
         dependencies=get_asset('dependencies'),
         style=get_asset('style'),
         known_issues=rknown,
-        fixed_issues=rfixed
+        fixed_issues=rfixed,
     )
 
 
