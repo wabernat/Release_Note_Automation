@@ -15,8 +15,12 @@ JQL_MATRIX = [
     'project = {project}',
     '"Release notes" != "No"',
     'status {fixed} "Done"',
+    'issuetype = bug',
+    '(severity in (Critical, Blocker) OR priority in (High, Urgent) AND severity = Major)',
     'fixVersion >= {version}'
 ]
+
+ISSUE_ORDERING = 'ORDER BY status, severity, priority'
 
 # known issues:
 #     Query: Project AND fixVersion number AND (Release Notes != "No" or "None") AND status != "Done"
@@ -34,9 +38,11 @@ def _get_jira():
 
 def _build_jql(project, version, fixed=False):
     if project == 'zenko':
-        tmpl = ' AND '.join(JQL_MATRIX[:3])
+        # Zenko has alpanumeric version so leave off the fixVersion
+        tmpl = ' AND '.join(JQL_MATRIX[:-1])
     else:
         tmpl = ' AND '.join(JQL_MATRIX)
+    tmpl += ' ' + ISSUE_ORDERING
     fixed = '=' if fixed else '!='
     return tmpl.format(project=project, version=version, fixed=fixed)
 
@@ -74,11 +80,17 @@ def _get_issues_s3c(version, fixed):
         for t in _get_issues(query):
             yield t
 
+def _get_issues_generic(project, version, fixed):
+    query = _build_jql(project, version , fixed)
+    return _get_issues(query)
+
 def get_issues(project, version, fixed):
     if project == 'zenko':
         issues = _get_issues_zenko(version, fixed)
     elif project == 's3c':
-        issues =_get_issues_s3c(version, fixed)
+        issues = _get_issues_s3c(version, fixed)
+    else:
+        issues = _get_issues_generic(project, version, fixed)
     return list(
         sorted(issues, key=lambda i: i.severity)
     )
