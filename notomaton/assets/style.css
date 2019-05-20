@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+/* HEADINGS */
 
 h1, h2, h3, h4, h5, h6, caption {
     font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
@@ -12,76 +13,6 @@ h1, h2, h3, h4, h5, h6, caption {
     padding: 3px 0 3px 0px;
 }
 
-body {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-}
-
-td {
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-#    font-size: 10pt;
-    vertical-align: top;
-    padding: 2px;
-} 
-
-table#fixknown {
-    font-size: 12pt;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}
-
-fixknown tr {
-    nth-child(even){background-color: #f2f2f2;}
-}
-
-
-div.highlight {
-    background-color: #E6E6E6;
-}
-
-.highlight {
-    background-color: #E6E6E6;
-}
-    
-div.document {
-    background-color: #201921;
-    margin: 0px auto 0 auto;
-    width: 1180px;
-}
-
-div.related {
-    background-color: #201921;
-    line-height: 50px;
-    color: #FFFFFF;
-}
-
-/* Related items */
-div.related li {
-    display: none;
-}
-
-/* Padding at the top */
-div.body {
-    margin-top: 0px;
-    padding: 34px 40px 20px 40px;
-}
-
-/* Link Colors */
-a:visited {
-    color: #ff9b3b;
-    text-decoration: none;
-}
-
-a {
-    color: #f54f29;
-    text-decoration: none;
-}
-
-div.body p {
-    text-align: left;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-
-/* Headline styles */
 div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
     font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
     background-color: #FFFFFF;
@@ -92,113 +23,11 @@ div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
     padding: 3px 0 3px 0px;
 }
 
-/* Padding on items on left sidebar */
-div.sphinxsidebar h3 {
-    font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
-    color: #FFFFFF;
-    font-size: 1.4em;
-    font-weight: normal;
-    margin: 0px;
-    padding: 10px 0px;
+div.body h1 {
+    font-size: 222%;
 }
 
-/* Changes color of warning note box */
-div.warning {
-    background-color: #ff9b3b;
-    border: 1px solid #e55529;
-}
-
-div.admonition.warning a:visited {
-    color: #3F5952;
-    text-decoration: none;
-}
-/* Changes the table header color to be gray */
-table.docutils th {
-  background-color: #eaeaea;
-}
-
-table caption {
-    font-weight: bold;
-    text-align: left;
-    margin-top: 20px;
-}
-
-/* Width of sidebar content */
-div.sphinxsidebarwrapper {
-    padding: 10px 10px 0 10px;
-    background-color: #201921;
-}
-
-/* Sidebar margin */
-div.sphinxsidebar {
-    top: 11px;
-}
-
-div.sphinxsidebar a
-  {
-  color: '#FFFFFF';
-  }
-
-div.sphinxsidebar input
-  {
-    border: 1px solid '#FFFFFF';
-  }
-
-p topless
-  {
-      color: '#FFFFFF';
-      background-color: '#201921';
-  }
-
-p.admonition-title
-  {
-    font-family: 'Oswald';
-    display: inline;
-  }
-
-div.body dd
-  {
-    text-align: left;
-  }
-  
-div.body li
-  {
-    text-align: left;
-    margin-left: 1em;
-  }
-
-div.body blockquote
-  {
-    text-align: left;
-  }
-
-pre
-  {   font-size: 90%;
-      font-family: Courier, "Courier New", monospace ; 
-/*      margin-left: 18pt;*/
-      margin-top: 0pt;
-      color: '#000000';
-      background-color: '#F2F2F2';
-      border-bottom: none;      
-      border-top: none;
-      border-left: none;
-      border-right: none;
-  }
-
-strong {
-   font-weight: bold;
-}
-
-div.strong {
-   font-weight: bold;
-}
-
-a.reference-internal
-  {
-    color: '#FFFFFF'
-  }
-
-/* h2
+h2
   {
     font-size: 16pt;
     font-family: 'Oswald SemiBold';
@@ -227,57 +56,134 @@ h6
     font-variant: small-caps;
     font-family: 'Oswald SemiBold';
   }
-*/
-img
+
+
+/* BODY */
+
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+div.highlight {
+    background-color: #E6E6E6;
+}
+
+.highlight {
+    background-color: #E6E6E6;
+}
+
+/* Padding at the top */
+div.body {
+    margin-top: 0px;
+    padding: 34px 40px 20px 40px;
+}
+
+/* Link Colors */
+
+a:visited {
+    color: #ff9b3b;
+    text-decoration: none;
+}
+
+a {
+    color: #f54f29;
+    text-decoration: none;
+}
+
+div.body p {
+    text-align: left;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+a.reference-internal
   {
-    align: center
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    color: '#FFFFFF'
   }
 
+code {
+    font-family: Courier, "Courier New", monospace;
+    font-size: 90%;
+    background-color: inherit;
+}
 
-img.FiftyPercent
-  {
-    max-width: 50%;
-  }
+/* TABLES */
 
+table, th, tr, td {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    text-align: left;
+    padding-left: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
 
-img.OneHundredPercent
-  {
-    max-width: 100%;
-/*    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;*/
-  }
+tr {
+    text-align: left;
+}
 
-img.SeventyFivePercent
-  {
-    align: center;
-    max-width: 75%;
-  /*      padding-left: 10px;
-      padding-right: 10px;
-      display: block;
-      padding-top: 5px;
-      padding-bottom: 5px;*/
-    }
+td {
+    vertical-align: top;
+} 
+    
+/* Change the table header color to be gray */
 
-div.footer
-  {
+table thead {
+    background-color: #eaeaea;
+    font-weight: bold;
+}
+
+th {
+    font-weight: bold;
+    vertical-align: bottom;
+    background-color: #f2f2f2;
+}
+
+table.footnote td, table.footnote th {
+    border: 0 !important;
+}
+
+table.citation {
+    border-left: solid 1px gray;
+    margin-left: 1px;
+}
+
+/* Related items */
+
+div.related {
     background-color: #201921;
+    line-height: 50px;
+    color: #FFFFFF;
+}
+
+div.related li {
+    display: none;
+}
+
+div.document {
+    background-color: #201921;
+    margin: 0px auto 0 auto;
+    width: 1180px;
+}
+
+/* ADMONITIONS */
+
+p.admonition-title
+  {
+    font-family: 'Oswald';
+    display: inline;
   }
 
-td ul {
-   margin-left: 1em;
+/* Changes color of warning note box */
+div.warning {
+    background-color: #ff9b3b;
+    border: 1px solid #e55529;
 }
 
-td ul li
-{
-    margin-left: 1em;
+div.admonition.warning a:visited {
+    color: #3F5952;
+    text-decoration: none;
 }
-
 
 /* Changes color of note admonition box */
 div.note {
@@ -297,9 +203,95 @@ div.tip {
     border: 1px solid #93d893;
 }
 
-/* H1 */
-div.body h1 {
-    font-size: 222%;
+
+/* LISTS */
+
+div.body dd
+  {
+    text-align: left;
+  }
+  
+div.body li
+  {
+    text-align: left;
+    margin-left: 1em;
+  }
+
+/* MISC. BLOCK ELEMENTS */
+
+div.body blockquote
+  {
+    text-align: left;
+  }
+
+pre
+  {   font-size: 90%;
+      font-family: Courier, "Courier New", monospace ; 
+/*      margin-left: 18pt; */
+      margin-top: 0pt;
+      color: '#000000';
+      background-color: '#F2F2F2';
+      border-bottom: none;      
+      border-top: none;
+      border-left: none;
+      border-right: none;
+  }
+
+}
+
+/* IMAGES */
+
+img
+  {
+    align: center
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+
+img.FiftyPercent
+  {
+    max-width: 50%;
+  }
+
+
+img.OneHundredPercent
+  {
+    max-width: 100%;
+/*    padding-left: 10px; */
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;*/
+  }
+
+img.SeventyFivePercent
+  {
+    align: center;
+    max-width: 75%;
+  /*      padding-left: 10px; */
+      padding-right: 10px;
+      display: block;
+      padding-top: 5px;
+      padding-bottom: 5px;*/
+    }
+
+div.footer
+  {
+    background-color: #201921;
+  }
+
+/* COMPLEX SELECTORS */
+/* keep these late in the stylesheet */
+
+td ul {
+   margin-left: 1em;
+}
+
+td ul li
+{
+    margin-left: 1em;
 }
 
 td pre {
@@ -308,14 +300,9 @@ td pre {
     background-color: e6e6e6;
     margin-top: 0;
 }
+
 table.docutils td, table.docutils th {
     border-top: 1px solid #aaa;
-}
-
-code {
-    font-family: Courier, "Courier New", monospace;
-    font-size: 90%;
-    background-color: inherit;
 }
 
 ol ol {

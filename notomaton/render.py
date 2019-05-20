@@ -18,6 +18,8 @@ def render_html(conf, known, fixed):
     return render_template(
         'release_notes',
         introduction=get_template('introduction').render(**conf),
+        newfeatures=get_asset('newfeatures'),
+        documentation=get_template('documentation').render(**conf),
         dependencies=get_asset('dependencies'),
         style=get_asset('style'),
         known_issues=rknown,

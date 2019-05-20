@@ -10,10 +10,14 @@
 
     <body>
         <h1>
-            Release Notes
+            {{ product }} {{ version }} Release Notes
         </h1>
 
         {{ introduction }}
+
+	{{ newfeatures }}
+
+	{{ documentation }}
 
         {{ dependencies }}
 
@@ -21,7 +25,7 @@
 
 <h3>Severity Labels for Known and Fixed Issues</h3>
 <p>The following table explains the severity label for each known and fixed issue:</p>
-<table border="1" class="docutils">
+<table border="1">
 <thead></thead>
 <tbody>
 <tr><td>Critical</td><td>Presents risk of service outage and/or data loss or corruption</td></tr>
