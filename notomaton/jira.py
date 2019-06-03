@@ -1,11 +1,13 @@
+import json
 from collections import namedtuple
-from pprint import pprint
 from itertools import chain
+from pprint import pprint
+
 from jira import JIRA
 
+from .constants import Product
 from .util.conf import config
 from .util.log import Log
-import json
 
 _log = Log('jira')
 
@@ -64,8 +66,8 @@ def _get_issues(query):
             [v.name for v in ticket.fields.fixVersions] # Fix version
         )
 
-def _get_issues_zenko(version, fixed):
-    query = _build_jql('zenko', version, fixed)
+def _get_issues_zenko(project, version, fixed):
+    query = _build_jql(project, version, fixed)
     to_meet = _parse_version(version)
     for ticket in _get_issues(query):  # Zenko has alphanumeric versions
         for v in ticket.fix_versions:  # in addition to semantic, so we manually check
@@ -74,29 +76,38 @@ def _get_issues_zenko(version, fixed):
                 yield ticket
                 break
 
-def _get_issues_s3c(version, fixed):
-    for p in ['s3c', 'md']: # S3C release notes contain Metadata tickets too
-        query = _build_jql(p, version, fixed)
-        for t in _get_issues(query):
-            yield t
-
 def _get_issues_generic(project, version, fixed):
     query = _build_jql(project, version , fixed)
     return _get_issues(query)
 
-def get_issues(project, version, fixed):
-    if project == 'zenko':
-        issues = _get_issues_zenko(version, fixed)
-    elif project == 's3c':
-        issues = _get_issues_s3c(version, fixed)
-    else:
-        issues = _get_issues_generic(project, version, fixed)
-    return list(
-        sorted(issues, key=lambda i: i.severity)
+PRODUCT_TO_JIRA = {
+    Product.ZENKO: {
+        'func': _get_issues_zenko,
+        'projects': ['zenko', 'znc']
+    },
+    Product.S3C : {
+        'func': _get_issues_generic,
+        'projects': ['s3c', 'md']
+    },
+    Product.RING: {
+        'func': _get_issues_generic,
+        'projects': ['ring']
+    },
+}
+
+def get_issues(product, version, fixed):
+    conf = PRODUCT_TO_JIRA[product]
+    return tuple(
+        sorted(
+            list(chain(
+                *[conf['func'](p, version, fixed) for p in conf['projects']]
+            )),
+            key=lambda i: i.severity
+        )
     )
 
-def get_known(project, version):
-    return get_issues(project, version, False)
+def get_known(product, version):
+    return get_issues(product, version, False)
 
-def get_fixed(project, version):
-    return get_issues(project, version, True)
+def get_fixed(product, version):
+    return get_issues(product, version, True)

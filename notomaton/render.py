@@ -1,35 +1,47 @@
-from .templates import get_template
-from .assets import get_asset
-import tempfile
 import io
+import tempfile
+
 import pdfkit
 
+from .assets import Book
+from .constants import PRODUCT_TO_CANONICAL
+from .context import build_context
+from .templates import get_template
+
+# For rendering internal app tempaltes
 def render_template(name, **kwargs):
     tmpl = get_template(name)
     if tmpl is None:
         raise Exception('Unable to locate template %s'%name)
     return tmpl.render(**kwargs)
 
+def as_file(f):
+    def inner(*args, **kwargs):
+        out = io.BytesIO()
+        data = f(*args, **kwargs)
+        if isinstance(data, str):
+            data = data.encode('utf-8')
+        out.write(data)
+        out.seek(0)
+        return out
+    return inner
 
-def render_html(conf, known, fixed):
-    rknown = render_template('issues', issues=known, issue_type='known', **conf)
-    rfixed = render_template('issues', issues=fixed, issue_type='fixed', **conf)
-    conf['product'] = conf['project']
-    return render_template(
-        'release_notes',
-        introduction=get_template('introduction').render(**conf),
-        newfeatures=get_asset('newfeatures'),
-        documentation=get_template('documentation').render(**conf),
-        dependencies=get_asset('dependencies'),
-        style=get_asset('style'),
-        known_issues=rknown,
-        fixed_issues=rfixed,
-    )
+def _render_html(book, ctx):
+    return book.render(ctx)
 
+def _render_pdf(book, ctx):
+    rendered_html = _render_html(book, ctx)
+    return pdfkit.from_string(rendered_html, False)
 
-def render_pdf(conf, known, fixed):
-    book = io.BytesIO()
-    rendered_html = render_html(conf, known, fixed)
-    book.write(pdfkit.from_string(rendered_html, False))
-    book.seek(0)
-    return book
+_MODES = { 'html': _render_html, 'pdf': _render_pdf }
+def render_book(book, ctx, mode='html'):
+    render_func = _MODES.get(mode)
+    if render_func is None:
+        raise Exception('Unknown render mode %s', mode)
+    return render_func(book, ctx)
+
+@as_file
+def load_and_render_book(product, version, mode='html'):
+    book = Book(PRODUCT_TO_CANONICAL[product], version)
+    ctx = build_context(product, version)
+    return render_book(book, ctx, mode)

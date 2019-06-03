@@ -44,10 +44,7 @@ APP_DEFAULTS = {
         'server': 'https://scality.atlassian.net'
     },
     'runtime': {
-        'project': None,
-        'template': 'simple',
-        'version': None,
-		'output': None
+		'asset_path': None
     }
 }
 
