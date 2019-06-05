@@ -1,0 +1,8 @@
+templates:
+    issues:
+        known:
+            issue_type: Known
+            tickets: '$ctx.issues.known'
+        fixed:
+            issue_type: Fixed
+            tickets: '$ctx.issues.fixed'
