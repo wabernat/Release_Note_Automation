@@ -1,0 +1,10 @@
+#
+# This book is for the internal dashboard, so unless you know what you're doing, DO NOT EDIT!!!!
+#
+
+style:
+  - common/style.css
+
+layout:
+  - $templates/issues.fixed
+  - $templates/issues.known

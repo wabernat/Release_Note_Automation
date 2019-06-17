@@ -15,15 +15,23 @@ def render_template(name, **kwargs):
         raise Exception('Unable to locate template %s'%name)
     return tmpl.render(**kwargs)
 
+def as_file(f):
+    def inner(*args, **kwargs):
+        out = io.BytesIO()
+        data = f(*args, **kwargs)
+        if isinstance(data, str):
+            data = data.encode('utf-8')
+        out.write(data)
+        out.seek(0)
+        return out
+    return inner
+
 def _render_html(book, ctx):
     return book.render(ctx)
 
 def _render_pdf(book, ctx):
     rendered_html = _render_html(book, ctx)
-    pdf = io.BytesIO()
-    pdf.write(pdfkit.from_string(rendered_html, False))
-    pdf.seek(0)
-    return pdf
+    return pdfkit.from_string(rendered_html, False)
 
 _MODES = { 'html': _render_html, 'pdf': _render_pdf }
 def render_book(book, ctx, mode='html'):
@@ -31,6 +39,8 @@ def render_book(book, ctx, mode='html'):
     if render_func is None:
         raise Exception('Unknown render mode %s', mode)
     return render_func(book, ctx)
+
+@as_file
 
 def load_and_render_book(product, version, mode='html'):
     book = Book(PRODUCT_TO_CANONICAL[product], version)
