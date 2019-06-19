@@ -62,7 +62,7 @@ def _get_issues(query):
             ticket.key, # Ticket ID eg ZENKO-1234
             getattr(ticket.fields.customfield_10800, 'value', '--'), # Severity
             [c.name for c in ticket.fields.components], # Component names
-            ticket.fields.customfield_12102, # Ticket description
+            ticket.fields.description, # Ticket description
             [v.name for v in ticket.fields.fixVersions] # Fix version
         )
 
