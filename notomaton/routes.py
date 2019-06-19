@@ -33,7 +33,6 @@ def render():
     file_format = request.args.get('format')
     if file_format != 'pdf' and file_format != 'html':
         return 'Bad Request', 400
-    print(product)
     return send_file(
         load_and_render_book(product, version, mode=file_format),
         as_attachment=True,
