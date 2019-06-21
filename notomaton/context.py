@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 from .constants import PRODUCT_TO_NAME, PRODUCT_TO_CANONICAL
-from .jira import get_fixed, get_known
+from .search import do_search
 
 Context = namedtuple('Context', ['product', 'issues', 'style'])
 
@@ -10,9 +10,10 @@ Issues = namedtuple('Issues', ['known', 'fixed'])
 Product = namedtuple('Product', ['name', 'canonical', 'version'])
 
 def build_issues(product, version):
+    search = do_search(product, version)
     return Issues(
-        known = get_known(product, version),
-        fixed = get_fixed(product, version)
+        known = tuple(search.known),
+        fixed = tuple(search.fixed)
     )
 
 def build_context(product, version):

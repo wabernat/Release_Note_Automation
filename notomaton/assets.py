@@ -148,7 +148,6 @@ def discover_templates():
     for path in find_files(template_dir):
         if path.is_file() and path.suffix == '.j2':
             template_paths[path.stem] = path
-    print(template_paths)
     with open(template_dir / 'templates.yaml') as template_conffile:
         template_conf = yaml.safe_load(template_conffile)
     templates = {}
@@ -168,7 +167,6 @@ def discover_assets():
             asset_path = path.relative_to(asset_dir).as_posix()
             assets[asset_path] = Template(path)
     assets.update(discover_templates())
-    print(assets)
     return Assets(assets)
 
 def get_asset(path):
