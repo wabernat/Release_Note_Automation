@@ -32,7 +32,8 @@ def _replace_block(regex, string):
         if changed: # If we replace a starting tag we require a end tag
             changed, new_string = _replace_tag(regex, REPL_STOP, new_string)
             if not changed:
-                raise Exception('Unable to end tag for block!')
+                _log.error('Unable to end tag for block!')
+                _log.debug(string)
     return new_string
 
 def replace_no_format(string):

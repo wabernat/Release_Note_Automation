@@ -20,7 +20,8 @@ class JiraSearch:
     def _version_filter(self):
         return f'fixVersion >= {self._version}'
 
-        return 'status != "Done"'
+    def _issue_type_filter(self):
+        return 'issuetype = bug'
 
     def _ticket_filter(self):
         return '(severity in (Critical, Blocker) OR ' + \
@@ -35,6 +36,7 @@ class JiraSearch:
     def _build_jql(self, *args):
         filter_funcs = [
             self._project_filter,
+            self._issue_type_filter,
             self._version_filter,
             self._ticket_filter,
             *args
