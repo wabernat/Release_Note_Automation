@@ -1,5 +1,5 @@
 from .constants import Product
-from .jira import Ticket, get_jira
+from .jira import Ticket, get_jira, replace_jira_formatting
 from .util.log import Log
 from .util.ticket import parse_version
 
@@ -49,7 +49,7 @@ class JiraSearch:
     def _get_fields(self, ticket):
         fields = dict(
             key=ticket.key,
-            description=ticket.fields.description
+            description=replace_jira_formatting(ticket.fields.description)
         )
         fields['severity'] = getattr(ticket.fields.customfield_10800,
                                         'value', '--')
@@ -117,7 +117,7 @@ class RingSearch(JiraSearch):
         if hasattr(ticket.fields, 'customfield_12102') and \
             ticket.fields.customfield_12102 and \
             ticket.fields.customfield_12102.strip():
-            fields['description'] = ticket.fields.customfield_12102
+            fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
         return fields
 
 PRODUCT_TO_SEARCH = {
