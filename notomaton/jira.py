@@ -42,4 +42,6 @@ def replace_code_block(string):
     return _replace_block(CODE_BLOCK_REGEX, string)
 
 def replace_jira_formatting(string):
+    if string is None:
+        return ''
     return replace_code_block(replace_no_format(string))
