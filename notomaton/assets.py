@@ -144,7 +144,7 @@ def find_files(directory):
 
 def discover_templates():
     template_paths = {}
-    template_dir = PosixPath(config.runtime.asset_path).resolve() / 'templates'
+    template_dir = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'templates'
     for path in find_files(template_dir):
         if path.is_file() and path.suffix == '.j2':
             template_paths[path.stem] = path
@@ -161,7 +161,7 @@ def discover_templates():
 
 def discover_assets():
     assets = {}
-    asset_dir = PosixPath(config.runtime.asset_path).resolve() / 'assets'
+    asset_dir = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'assets'
     for path in find_files(asset_dir):
         if path.is_file() and path.suffix in VALID_EXTENSIONS:
             asset_path = path.relative_to(asset_dir).as_posix()
@@ -170,14 +170,14 @@ def discover_assets():
     return Assets(assets)
 
 def get_asset(path):
-    asset_path = PosixPath(config.runtime.asset_path).resolve() / 'assets' / path
+    asset_path = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'assets' / path
     if not asset_path.exists() or not asset_path.is_file():
         raise Exception('Unable to load asset %s at %s', (path, asset_path))
     with open(asset_path) as f:
         return f.read()
 
 def load_book(name, version):
-    asset_dir = PosixPath(config.runtime.asset_path).resolve() / 'assets'
+    asset_dir = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'assets'
     # version_string = '.'.join(str(i) for i in version)
     book_dir = asset_dir / name / version
     if not book_dir.exists():

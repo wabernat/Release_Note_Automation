@@ -3,7 +3,7 @@
 cd /usr/local/src/notomaton
 exec gunicorn \
     --bind "0.0.0.0:80" \
-    --workers 2 \
+    --workers 1 \
     --certfile /lego/certificates/${LEGO_DOMAINS}.crt \
     --keyfile /lego/certificates/${LEGO_DOMAINS}.pem \
     notomaton.app:app

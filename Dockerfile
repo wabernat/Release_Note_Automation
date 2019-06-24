@@ -21,7 +21,7 @@ ENV	LEGO_ACME_STAGING_HOST "https://acme-staging-v02.api.letsencrypt.org/directo
 ENV LEGO_STAGING TRUE
 
 # Notomaton config
-ENV NOTOMATON_RUNTIME_ASSET_PATH /usr/local/share/docs/
+ENV NOTOMATON_RUNTIME_ASSET_PATH /usr/local/share/assets/
 
 RUN apk add --update \
         libffi-dev \
@@ -34,6 +34,7 @@ RUN apk add --update \
         libx11 \
         libstdc++ \
         libgcc \
+        git \
         ca-certificates
 
 ADD ./requirements.txt /tmp
@@ -61,5 +62,8 @@ ADD . /usr/local/src/notomaton
 ADD docs/ /usr/local/share/docs/
 
 WORKDIR /usr/local/src/notomaton
+
+# RUN apk add --update openssh
+# ENV GIT_SSH_COMMAND "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 CMD /init

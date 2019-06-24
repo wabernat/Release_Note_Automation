@@ -8,7 +8,7 @@ from .constants import CANONICAL_TO_PRODUCT, Product
 from .context import build_context
 from .render import load_and_render_book, render_template
 from .util.auth import requires_auth
-
+from .sync import sync_assets
 
 @app.route('/')
 def redirect_to_dashboard():
@@ -33,6 +33,7 @@ def render():
     file_format = request.args.get('format')
     if file_format != 'pdf' and file_format != 'html':
         return 'Bad Request', 400
+    sync_assets()
     return send_file(
         load_and_render_book(product, version, mode=file_format),
         as_attachment=True,
@@ -46,6 +47,7 @@ def has_book(product, version):
     if CANONICAL_TO_PRODUCT.get(product.lower()) is None:
         return 'Bad Request', 400
     try:
+        sync_assets()
         load_book(product, version)
     except Exception as e:
         return jsonify(dict(exists=False))
