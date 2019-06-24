@@ -1,5 +1,5 @@
 from .constants import Product
-from .jira import Ticket, _get_issues, _get_jira
+from .jira import Ticket, get_jira
 from .util.log import Log
 from .util.ticket import parse_version
 
@@ -60,7 +60,7 @@ class JiraSearch:
     def _get_issues(self, *args):
         query = self._build_jql(*args)
         _log.info('Using jql %s'%query)
-        for ticket in _get_jira().search_issues(query):
+        for ticket in get_jira().search_issues(query):
             yield Ticket(**self._get_fields(ticket))
 
     def _sort_issues(self, issues):

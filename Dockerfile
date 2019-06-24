@@ -9,6 +9,7 @@ ENV S6_VERSION 1.21.8.0
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && rm /tmp/s6-overlay-amd64.tar.gz
 
+# Let's encrypt config
 ENV LEGO_PROVIDER cloudflare
 ENV LEGO_DNS_RESOLVERS 8.8.8.8
 ENV LEGO_PATH /lego
@@ -18,6 +19,9 @@ ENV LEGO_RENEW_DAYS 30
 ENV LEGO_ACME_HOST "https://acme-v02.api.letsencrypt.org/directory"
 ENV	LEGO_ACME_STAGING_HOST "https://acme-staging-v02.api.letsencrypt.org/directory"
 ENV LEGO_STAGING TRUE
+
+# Notomaton config
+ENV NOTOMATON_RUNTIME_ASSET_PATH /usr/local/share/docs/
 
 RUN apk add --update \
         libffi-dev \
@@ -54,8 +58,8 @@ COPY --from=wkhtmltopdf /lib/libwkhtmltox* /lib/
 ADD ./s6 /etc
 
 ADD . /usr/local/src/notomaton
+ADD docs/ /usr/local/share/docs/
+
 WORKDIR /usr/local/src/notomaton
-# RUN python setup.py install
 
 CMD /init
-# CMD FLASK_APP=notomaton/app.py flask run --reload --host 0.0.0.0

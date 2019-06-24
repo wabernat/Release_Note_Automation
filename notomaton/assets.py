@@ -172,7 +172,7 @@ def discover_assets():
 def get_asset(path):
     asset_path = PosixPath(config.runtime.asset_path).resolve() / 'assets' / path
     if not asset_path.exists() or not asset_path.is_file():
-        raise Exception('Unable to load asset %s at %s', (asset, asset_path))
+        raise Exception('Unable to load asset %s at %s', (path, asset_path))
     with open(asset_path) as f:
         return f.read()
 
