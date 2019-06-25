@@ -49,10 +49,14 @@ class JiraSearch:
         return '%s %s'%(' AND '.join(filters), self._ordering)
 
     def _get_fields(self, ticket):
-        fields = dict(
-            key=ticket.key,
-            description=replace_jira_formatting(ticket.fields.description)
-        )
+        fields = dict(key=ticket.key)
+        if hasattr(ticket.fields, 'customfield_12102') and \
+            ticket.fields.customfield_12102 and \
+            ticket.fields.customfield_12102.strip():
+            fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
+        else:
+            fields['description'] = ''
+        replace_jira_formatting(ticket.fields.description)
         fields['severity'] = getattr(ticket.fields.customfield_10800,
                                         'value', '--')
         fields['components'] = [c.name for c in ticket.fields.components]
@@ -114,13 +118,13 @@ class RingSearch(JiraSearch):
     def __init__(self, version):
         super().__init__('ring', version)
 
-    def _get_fields(self, ticket):
-        fields = super()._get_fields(ticket)
-        if hasattr(ticket.fields, 'customfield_12102') and \
-            ticket.fields.customfield_12102 and \
-            ticket.fields.customfield_12102.strip():
-            fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
-        return fields
+    # def _get_fields(self, ticket):
+    #     fields = super()._get_fields(ticket)
+    #     if hasattr(ticket.fields, 'customfield_12102') and \
+    #         ticket.fields.customfield_12102 and \
+    #         ticket.fields.customfield_12102.strip():
+    #         fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
+    #     return fields
 
 PRODUCT_TO_SEARCH = {
     Product.ZENKO: ZenkoSearch,
