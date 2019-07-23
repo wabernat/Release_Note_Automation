@@ -16,9 +16,16 @@ class JiraSearch:
             jql = ' OR '.join(f'project = {p}' for p in self._project)
             return f'({jql})'
         return f'project = {self._project}'
+    
+    def _release_notes_filter(self):
+        return '"Release notes" != "No"'
 
-    def _version_filter(self):
+    def _gte_version_filter(self):
         return f'fixVersion >= {self._version}'
+
+    def _equ_version_filter(self):
+        return f'fixVersion = {self._version}'
+
 
     def _issue_type_filter(self):
         return 'issuetype = bug'
@@ -36,8 +43,8 @@ class JiraSearch:
     def _build_jql(self, *args):
         filter_funcs = [
             self._project_filter,
+            self._release_notes_filter,
             self._issue_type_filter,
-            self._version_filter,
             self._ticket_filter,
             *args
         ]
@@ -46,6 +53,7 @@ class JiraSearch:
             ticket_filter = filter_func()
             if ticket_filter:
                 filters.append(ticket_filter)
+        _log.debug(filters)
         return '%s %s'%(' AND '.join(filters), self._ordering)
 
     def _get_fields(self, ticket):
@@ -81,7 +89,8 @@ class JiraSearch:
     def fixed(self):
         return self._sort_issues(
             self._get_issues(
-                self._fixed_filter
+                self._fixed_filter,
+                self._equ_version_filter
             )
         )
 
@@ -89,16 +98,20 @@ class JiraSearch:
     def known(self):
         return self._sort_issues(
             self._get_issues(
-               self._known_filter
+               self._known_filter,
+               self._gte_version_filter
             )
         )
 
 class ZenkoSearch(JiraSearch):
     # We filter Zenko version manually as they are alphanumeric
     def __init__(self, version):
-        super().__init__(('zenko', 'znc'), version)
+        super().__init__(('zenko', 'znc', 'zenkoio'), version)
 
-    def _version_filter(self):
+    def _gte_version_filter(self):
+        return ''
+
+    def _equ_version_filter(self):
         return ''
 
     def _get_issues(self, *args):
@@ -117,14 +130,6 @@ class S3CSearch(JiraSearch):
 class RingSearch(JiraSearch):
     def __init__(self, version):
         super().__init__('ring', version)
-
-    # def _get_fields(self, ticket):
-    #     fields = super()._get_fields(ticket)
-    #     if hasattr(ticket.fields, 'customfield_12102') and \
-    #         ticket.fields.customfield_12102 and \
-    #         ticket.fields.customfield_12102.strip():
-    #         fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
-    #     return fields
 
 PRODUCT_TO_SEARCH = {
     Product.ZENKO: ZenkoSearch,
