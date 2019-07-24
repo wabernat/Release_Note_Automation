@@ -16,7 +16,7 @@ class JiraSearch:
             jql = ' OR '.join(f'project = {p}' for p in self._project)
             return f'({jql})'
         return f'project = {self._project}'
-    
+
     def _release_notes_filter(self):
         return '"Release notes" != "No"'
 
@@ -74,7 +74,7 @@ class JiraSearch:
     def _get_issues(self, *args):
         query = self._build_jql(*args)
         _log.info('Using jql %s'%query)
-        for ticket in get_jira().search_issues(query):
+        for ticket in get_jira().search_issues(query, maxResults=False):
             yield Ticket(**self._get_fields(ticket))
 
     def _sort_issues(self, issues):
@@ -122,6 +122,8 @@ class ZenkoSearch(JiraSearch):
                 if ticket_version is not None and ticket_version >= to_meet:
                     yield ticket
                     break
+    def _known_filter(self):
+        return '''(status != "Done" OR (status = "Done" AND resolution = "Won't Fix"))'''
 
 class S3CSearch(JiraSearch):
     def __init__(self, version):
