@@ -38,7 +38,7 @@ class JiraSearch:
         return 'status = "Done" AND resolution in (fixed, done)'
 
     def _known_filter(self):
-        return 'status != "Done"'
+        return '''(status != "Done" OR (status = "Done" AND resolution = "Won't Fix"))'''
 
     def _build_jql(self, *args):
         filter_funcs = [
@@ -122,8 +122,6 @@ class ZenkoSearch(JiraSearch):
                 if ticket_version is not None and ticket_version >= to_meet:
                     yield ticket
                     break
-    def _known_filter(self):
-        return '''(status != "Done" OR (status = "Done" AND resolution = "Won't Fix"))'''
 
 class S3CSearch(JiraSearch):
     def __init__(self, version):
