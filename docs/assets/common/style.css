@@ -204,6 +204,82 @@ div.tip {
 }
 
 
+/* Footer */
+
+
+div.footer div.leftwrapper {
+
+    margin: 1% 8% 0 7%;
+}
+
+div.footer div.links {
+    font-size: 1.1em;
+    margin-top: 15px;
+}
+
+
+img.baselogo.white {
+    width: 117px;
+}
+
+div.footer div.rightwrapper {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 15px;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20%;
+    padding-top: 2%;
+}
+
+
+div.footer div.rightwrapper img.social {
+    margin: auto 12px;
+    width: 42%;
+}
+
+div.footer {
+    grid-area: footer;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+div.footer a, div.footer a:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+div.footer div.leftwrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+div.footer div.links {
+    font-size: 1.8em;
+    margin-top: -10px;
+}
+
+div.footer div.rightwrapper {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 15px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+div.footer div.rightwrapper img.social {
+    margin: auto 15px;
+}
+
+.term {
+    color: #F37533;
+    font-weight: bold;
+}
+
 /* LISTS */
 
 div.body dd
