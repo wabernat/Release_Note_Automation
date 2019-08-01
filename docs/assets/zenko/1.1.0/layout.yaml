@@ -13,10 +13,9 @@ style:
   - common/style.css
 layout:
   - common/header.html
-  
+  - common/footer.html
   - common/introduction.html
   - newfeatures.html
-  - common/footer.html
   - common/documentation_links.html
   - dependencies.html
   - $templates/issues.fixed
