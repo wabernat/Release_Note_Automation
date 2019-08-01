@@ -212,14 +212,12 @@ div.footer div.leftwrapper {
     margin: 1% 8% 0 7%;
 }
 
-div.footer div.links {
-    font-size: 1.1em;
-    margin-top: 15px;
-}
 
 
-img.baselogo.white {
-    width: 117px;
+
+
+.logo {
+    width: 23%;
 }
 
 div.footer div.rightwrapper {
@@ -259,7 +257,7 @@ div.footer div.leftwrapper {
 }
 
 div.footer div.links {
-    font-size: 1.8em;
+    font-size: 1em;
     margin-top: -10px;
 }
 
@@ -273,6 +271,7 @@ div.footer div.rightwrapper {
 
 div.footer div.rightwrapper img.social {
     margin: auto 15px;
+    width: 25%;
 }
 
 .term {
