@@ -29,14 +29,20 @@ div.body h1 {
 
 h2
   {
-    font-size: 16pt;
+    font-size: 1.3em;
     font-family: 'Oswald SemiBold';
+      text-transform: uppercase;
+      margin-bottom: 2%;
   }
 
 h3
   {
-    font-size: 14pt;
+    font-size: 1.1em;
     font-family: 'Oswald SemiBold';
+    text-transform: uppercase;
+    padding-left: 1%;
+    margin-bottom: 2%;
+      margin-top: 2%;
   }
 
 h4
@@ -128,6 +134,7 @@ tr {
 
 td {
     vertical-align: top;
+    padding: 1.5%;
 } 
     
 /* Change the table header color to be gray */
@@ -239,7 +246,7 @@ div.footer div.leftwrapper {
 
 
     .headnav {
-    margin: 3.2% 5% 3% 5%;
+    margin: 3.2% 3% 3% 3%;
     float: left;
     text-align: left;
 }
