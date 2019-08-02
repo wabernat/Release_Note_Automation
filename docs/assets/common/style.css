@@ -117,8 +117,8 @@ table, th, tr, td {
     padding-bottom: 2px;
     border-collapse: collapse;
     border: 1px solid black;
-    padding-left: 10%;
-    padding-right: 10%
+    padding-left: 1%;
+    padding-right: 1%
     
 }
 
@@ -237,7 +237,6 @@ div.footer div.leftwrapper {
 
 .headnav{
     margin: 3.2% 0 3% 1%;
-    text-transform: uppercase;
     width: 30%;
     float:left;
     text-align: left;

@@ -17,6 +17,6 @@ layout:
   - newfeatures.html
   - common/documentation_links.html
   - dependencies.html
-  - common/footer.html
   - $templates/issues.fixed
   - $templates/issues.known
+  - common/footer.html
