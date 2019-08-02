@@ -19,7 +19,7 @@ div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
     font-weight: 600;
     color: #000;
     border-bottom: 1px solid #ccc;
-    margin: 20px -20px 10px 0px;
+    margin: 20px 100px 10px 100px;
     padding: 3px 0 3px 0px;
 }
 
@@ -93,6 +93,8 @@ a {
 div.body p {
     text-align: left;
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    padding-left: 10%;
+    padding-right: 10%
 }
 
 a.reference-internal
@@ -111,11 +113,13 @@ code {
 table, th, tr, td {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     text-align: left;
-    padding-left: 4px;
     padding-top: 2px;
     padding-bottom: 2px;
     border-collapse: collapse;
     border: 1px solid black;
+    padding-left: 10%;
+    padding-right: 10%
+    
 }
 
 tr {
@@ -213,11 +217,30 @@ div.footer div.leftwrapper {
 }
 
 
-
-
-
 .logo {
     width: 23%;
+    margin-bottom: 7%;
+}
+
+.hlogo {
+    width: 100%;
+    
+}
+.headlogo {
+ 
+    margin:2% 0 0% 4%;
+    width: 12%;
+    float: left
+    
+}
+
+
+.headnav{
+    margin: 3.2% 0 3% 1%;
+    text-transform: uppercase;
+    width: 30%;
+    float:left;
+    text-align: left;
 }
 
 div.footer div.rightwrapper {
@@ -259,6 +282,7 @@ div.footer div.leftwrapper {
 div.footer div.links {
     font-size: 1em;
     margin-top: -10px;
+    margin-bottom: 5%;
 }
 
 div.footer div.rightwrapper {
