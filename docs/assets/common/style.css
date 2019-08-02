@@ -210,7 +210,9 @@ div.tip {
 
 /* Footer */
 
-
+footer{
+    margin-top: 5%
+}
 div.footer div.leftwrapper {
 
     margin: 1% 8% 0 7%;
@@ -235,12 +237,13 @@ div.footer div.leftwrapper {
 }
 
 
-.headnav{
-    margin: 3.2% 0 3% 1%;
-    width: 30%;
-    float:left;
+
+    .headnav {
+    margin: 3.2% 5% 3% 5%;
+    float: left;
     text-align: left;
 }
+
 
 div.footer div.rightwrapper {
     display: flex;
