@@ -49,7 +49,8 @@ APP_DEFAULTS = {
         'token': None
     },
     'runtime': {
-        'asset_path': None
+        'asset_path': None,
+        'sync_assets': False
     }
 }
 

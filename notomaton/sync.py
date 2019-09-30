@@ -28,6 +28,8 @@ def _pull_assets():
         _pull_cmd(), cwd=config.runtime.asset_path) == 0
 
 def sync_assets():
+    if not config.runtime.sync_assets:
+        return True
     if not _has_pulled_assets():
         return _clone_assets()
     return _pull_assets()

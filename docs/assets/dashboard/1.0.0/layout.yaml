@@ -6,5 +6,7 @@ style:
   - common/style.css
 
 layout:
+  - $templates/features.new
+  - $templates/features.improvement
   - $templates/issues.fixed
   - $templates/issues.known

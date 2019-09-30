@@ -22,3 +22,8 @@ CANONICAL_TO_PRODUCT = {
     's3c': Product.S3C,
     'ring': Product.RING
 }
+
+class TicketType(Enum):
+    BUG = 1
+    IMPROVEMENT = 4
+    EPIC = 10000

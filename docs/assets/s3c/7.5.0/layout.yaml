@@ -13,13 +13,7 @@ style:
   - common/style.css
 layout:
   - common/header.html
-  - common/body-start.html
-  - $templates/features.new
-  - $templates/features.improvement
+  - common/introduction.html
   - common/documentation_links.html
-  - dependencies.html
-  - common/issue_header.html
   - $templates/issues.fixed
   - $templates/issues.known
-  - common/footer.html
-  - common/body-end.html

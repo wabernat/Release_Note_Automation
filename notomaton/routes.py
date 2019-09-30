@@ -67,5 +67,5 @@ def issues():
     if product is None:
         return 'Bad Request', 400
     book = Book('dashboard', '1.0.0')
-    ctx = build_context(product, request.args['version'])
+    ctx = build_context(product, request.args['version'], dashboard=True)
     return book.render(ctx)

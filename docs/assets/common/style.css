@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-/* HEADINGS */
-
+/*
+ * Headings
+ */
 h1, h2, h3, h4, h5, h6, caption {
     font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
-    background-color: #FFFFFF;
     font-weight: 600;
     color: #000;
     border-bottom: 1px solid #ccc;
@@ -13,261 +13,96 @@ h1, h2, h3, h4, h5, h6, caption {
     padding: 3px 0 3px 0px;
 }
 
-div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body h6 {
-    font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
-    background-color: #FFFFFF;
-    font-weight: 600;
-    color: #000;
-    border-bottom: 1px solid #ccc;
-    margin: 20px 100px 10px 100px;
-    padding: 3px 0 3px 0px;
-}
-
-div.body h1 {
-    font-size: 222%;
-}
-
-h2
-  {
+h2 {
     font-size: 1.3em;
     font-family: 'Oswald SemiBold';
-      text-transform: uppercase;
-      margin-bottom: 2%;
-  }
+    margin-bottom: 2%;
+}
 
-h3
-  {
+h3 {
     font-size: 1.1em;
     font-family: 'Oswald SemiBold';
-    text-transform: uppercase;
     padding-left: 1%;
     margin-bottom: 2%;
-      margin-top: 2%;
-  }
+    margin-top: 2%;
+}
 
-h4
-  {
+h4 {
     font-size: 1em;
     font-family: 'Oswald SemiBold';
-  }
+}
 
-h5
-  {
+h5 {
     font-style: italic;
     font-family: 'Oswald SemiBold';
-  }
+}
 
-h6
-  {
+h6 {
     font-variant: small-caps;
     font-family: 'Oswald SemiBold';
-  }
+}
 
-
-/* BODY */
-
+/*
+ * Body
+*/
 body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
-div.highlight {
-    background-color: #E6E6E6;
+div.wrapper {
+    padding: 0px 40px 20px 40px;
 }
 
-.highlight {
-    background-color: #E6E6E6;
+div.wrapper > p {
+    padding: 0px 45px;
 }
 
-/* Padding at the top */
-div.body {
-    margin-top: 0px;
-    padding: 34px 40px 20px 40px;
-}
-
-/* Link Colors */
-
-a:visited {
-    color: #ff9b3b;
-    text-decoration: none;
-}
-
-a {
-    color: #f54f29;
-    text-decoration: none;
-}
-
-div.body p {
+body li {
     text-align: left;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    padding-left: 10%;
-    padding-right: 10%
+    margin-left: 1em;
 }
 
-a.reference-internal
-  {
-    color: '#FFFFFF'
-  }
-
-code {
-    font-family: Courier, "Courier New", monospace;
-    font-size: 90%;
-    background-color: inherit;
-}
-
-/* TABLES */
-
+/*
+ * Tables
+ */
 table, th, tr, td {
     font-family: Roboto, Helvetica, Arial, sans-serif;
     text-align: left;
-    padding-top: 2px;
-    padding-bottom: 2px;
     border-collapse: collapse;
     border: 1px solid black;
-    padding-left: 1%;
-    padding-right: 1%
-    
-}
-
-tr {
-    text-align: left;
+    table-layout: auto;
 }
 
 td {
     vertical-align: top;
-    padding: 1.5%;
-} 
-    
-/* Change the table header color to be gray */
+    padding: 2px 15px;
+}
+
+td.nowrap {
+    white-space: nowrap;
+}
 
 table thead {
     background-color: #eaeaea;
     font-weight: bold;
 }
 
-th {
-    font-weight: bold;
-    vertical-align: bottom;
-    background-color: #f2f2f2;
+/*
+ * Links
+ */
+a:visited {
+color: #ff9b3b;
+text-decoration: none;
 }
 
-table.footnote td, table.footnote th {
-    border: 0 !important;
+a {
+color: #f54f29;
+text-decoration: none;
 }
 
-table.citation {
-    border-left: solid 1px gray;
-    margin-left: 1px;
-}
-
-/* Related items */
-
-div.related {
-    background-color: #201921;
-    line-height: 50px;
-    color: #FFFFFF;
-}
-
-div.related li {
-    display: none;
-}
-
-div.document {
-    background-color: #201921;
-    margin: 0px auto 0 auto;
-    width: 1180px;
-}
-
-/* ADMONITIONS */
-
-p.admonition-title
-  {
-    font-family: 'Oswald';
-    display: inline;
-  }
-
-/* Changes color of warning note box */
-div.warning {
-    background-color: #ff9b3b;
-    border: 1px solid #e55529;
-}
-
-div.admonition.warning a:visited {
-    color: #3F5952;
-    text-decoration: none;
-}
-
-/* Changes color of note admonition box */
-div.note {
-    background-color: #eeeeff;
-    border: 1px solid #aeaee2;
-}
-
-/* Changes color of important note box */
-div.important {
-    background-color: #ffffe0;
-    border: 1px solid #ffdc50;
-}
-
-/* Changes the color of the Tip admonition box */
-div.tip {
-    background-color: #eeffee;
-    border: 1px solid #93d893;
-}
-
-
-/* Footer */
-
-footer{
-    margin-top: 5%
-}
-div.footer div.leftwrapper {
-
-    margin: 1% 8% 0 7%;
-}
-
-
-.logo {
-    width: 23%;
-    margin-bottom: 7%;
-}
-
-.hlogo {
-    width: 100%;
-    
-}
-.headlogo {
- 
-
-    width: 12%;
-    height: 12%;
-    
-}
-
-
-
-    .headnav {
-    margin: 3.2% 3% 3% 3%;
-    float: left;
-    text-align: left;
-}
-
-
-div.footer div.rightwrapper {
-    display: flex;
-    flex-grow: 1;
-    padding-right: 15px;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20%;
-    padding-top: 2%;
-}
-
-
-div.footer div.rightwrapper img.social {
-    margin: auto 12px;
-    width: 42%;
-}
-
+/*
+ Footer
+ */
 div.footer {
     grid-area: footer;
     width: auto;
@@ -277,23 +112,6 @@ div.footer {
     color: #FFFFFF;
 }
 
-div.footer a, div.footer a:hover {
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-div.footer div.leftwrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-div.footer div.links {
-    font-size: 1em;
-    margin-top: -10px;
-    margin-bottom: 5%;
-}
-
 div.footer div.rightwrapper {
     display: flex;
     flex-grow: 1;
@@ -302,118 +120,40 @@ div.footer div.rightwrapper {
     align-items: center;
 }
 
+div.footer div.leftwrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+footer{
+    margin-top: 5%
+}
+
 div.footer div.rightwrapper img.social {
-    margin: auto 15px;
+    margin: auto 12px;
     width: 25%;
 }
 
-.term {
-    color: #F37533;
-    font-weight: bold;
+div.footer a, div.footer a:hover {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
-/* LISTS */
+/*
+ * Logos
+ */
+.logo {
+    width: 23%;
+    margin-bottom: 7%;
+}
 
-div.body dd
-  {
-    text-align: left;
-  }
-  
-div.body li
-  {
-    text-align: left;
-    margin-left: 1em;
-  }
-
-/* MISC. BLOCK ELEMENTS */
-
-div.body blockquote
-  {
-    text-align: left;
-  }
-
-pre
-  {   font-size: 90%;
-      font-family: Courier, "Courier New", monospace ; 
-/*      margin-left: 18pt; */
-      margin-top: 0pt;
-      color: '#000000';
-      background-color: '#F2F2F2';
-      border-bottom: none;      
-      border-top: none;
-      border-left: none;
-      border-right: none;
-  }
+.hlogo {
+    width: 100%;
 
 }
 
-/* IMAGES */
-
-img
-  {
-    align: center
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-
-
-img.FiftyPercent
-  {
-    max-width: 50%;
-  }
-
-
-img.OneHundredPercent
-  {
-    max-width: 100%;
-/*    padding-left: 10px; */
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;*/
-  }
-
-img.SeventyFivePercent
-  {
-    align: center;
-    max-width: 75%;
-  /*      padding-left: 10px; */
-      padding-right: 10px;
-      display: block;
-      padding-top: 5px;
-      padding-bottom: 5px;*/
-    }
-
-div.footer
-  {
-    background-color: #201921;
-  }
-
-/* COMPLEX SELECTORS */
-/* keep these late in the stylesheet */
-
-td ul {
-   margin-left: 1em;
+.headlogo {
+    width: 12%;
+    height: 12%;
 }
-
-td ul li
-{
-    margin-left: 1em;
-}
-
-td pre {
-    border: none;
-    valign: top;
-    background-color: e6e6e6;
-    margin-top: 0;
-}
-
-table.docutils td, table.docutils th {
-    border-top: 1px solid #aaa;
-}
-
-ol ol {
-    list-style-type: lower-alpha;
-}
-

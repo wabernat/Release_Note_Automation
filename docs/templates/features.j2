@@ -1,0 +1,15 @@
+{% if ctx.tickets %}
+<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} Version {{ ctx.product.version }}</h2>
+
+{{ ctx.product.name }} introduces the following new features in release {{ ctx.product.version }}.
+
+{% for item in ctx.tickets %}
+<h3>
+{{ item.title }}
+{% if ctx.is_dashboard %}
+- <a href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</a>
+{% endif %}
+</h3>
+{{ item.description }}
+{% endfor %}
+{% endif %}

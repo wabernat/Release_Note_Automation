@@ -6,3 +6,10 @@ templates:
         fixed:
             issue_type: Fixed
             tickets: '$ctx.issues.fixed'
+    features:
+        new:
+            feature_type:  New
+            tickets: '$ctx.issues.new_features'
+        improvement:
+            feature_type: Improvements
+            tickets: '$ctx.issues.improvements'

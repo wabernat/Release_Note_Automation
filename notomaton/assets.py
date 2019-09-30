@@ -1,3 +1,4 @@
+import base64
 from collections import namedtuple
 from itertools import chain
 from pathlib import PosixPath
@@ -9,9 +10,15 @@ from .util.conf import config
 
 _ASSETS = []
 
-VALID_EXTENSIONS = [
+VALID_TXT_EXTENSIONS = [
     '.html',
     '.css',
+]
+
+VALID_IMG_EXTENSIONS = [
+    '.png',
+    '.svg',
+    '.jpg'
 ]
 
 BASE_HTML = '<?xml version="1.0" encoding="utf-8"?><html>{book}</html>'
@@ -133,6 +140,20 @@ class Book:
             book='\n'.join(page.render(ctx) for page in self._get_layout(assets))
         )
 
+class Image:
+    def __init__(self, path):
+        self._path = path
+
+    def _load_img(self):
+        with open(self._path, 'rb') as f:
+            return f.read()
+
+    def _get_encoded(self):
+        return base64.b64encode(self._load_img()).decode('utf-8')
+
+    def encode(self):
+        mimetype = 'image/%s'%self._path.suffix
+        return 'data:%s;base64,%s'%(mimetype, self._get_encoded())
 
 def find_files(directory):
     for path in directory.iterdir():
@@ -159,11 +180,20 @@ def discover_templates():
             templates[template_name] = Template(template_paths[template_base], **args)
     return templates
 
+def discover_images():
+    imgs = {}
+    img_dir = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'assets' / 'img'
+    for path in find_files(img_dir):
+        if path.is_file() and path.suffix in VALID_IMG_EXTENSIONS:
+            img_path = path.relative_to(img_dir).as_posix().replace('.', '_')
+            imgs[img_path] = Image(path)
+    return imgs
+
 def discover_assets():
     assets = {}
     asset_dir = PosixPath(config.runtime.asset_path).resolve() / 'docs' / 'assets'
     for path in find_files(asset_dir):
-        if path.is_file() and path.suffix in VALID_EXTENSIONS:
+        if path.is_file() and path.suffix in VALID_TXT_EXTENSIONS:
             asset_path = path.relative_to(asset_dir).as_posix()
             assets[asset_path] = Template(path)
     assets.update(discover_templates())
@@ -189,7 +219,6 @@ def load_book(name, version):
     with open(book_dir.joinpath('layout.yaml')) as book:
         book_layout = yaml.safe_load(book)
         return book_layout
-
 
 def resolve_book(book, assets):
     pages = []

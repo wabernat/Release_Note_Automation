@@ -41,7 +41,6 @@ def render_book(book, ctx, mode='html'):
     return render_func(book, ctx)
 
 @as_file
-
 def load_and_render_book(product, version, mode='html'):
     book = Book(PRODUCT_TO_CANONICAL[product], version)
     ctx = build_context(product, version)

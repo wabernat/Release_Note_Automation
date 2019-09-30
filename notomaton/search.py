@@ -1,7 +1,10 @@
-from .constants import Product
-from .jira import Ticket, get_jira, replace_jira_formatting
+from .constants import Product, TicketType
+from .jira import get_jira
 from .util.log import Log
 from .util.ticket import parse_version
+from .ticket import build_ticket
+
+from pprint import pprint
 
 _log = Log('search')
 
@@ -26,13 +29,18 @@ class JiraSearch:
     def _equ_version_filter(self):
         return f'fixVersion = {self._version}'
 
-
-    def _issue_type_filter(self):
+    def _issue_type_filter_bug(self):
         return 'issuetype = bug'
+
+    def _issue_type_filter_epic(self):
+        return 'issuetype = epic'
+
+    def _issue_type_filter_improvement(self):
+        return 'issuetype = improvement'
 
     def _ticket_filter(self):
         return '(severity in (Critical, Blocker) OR ' + \
-            'priority in (High, Urgent) AND severity = Major)'
+            '(priority in (High, Urgent) AND severity = Major))'
 
     def _fixed_filter(self):
         return 'status = "Done" AND resolution in (fixed, done)'
@@ -40,12 +48,14 @@ class JiraSearch:
     def _known_filter(self):
         return '''(status != "Done" OR (status = "Done" AND resolution = "Won't Fix"))'''
 
+    def _feature_filter(self, tickets):
+        for ticket in tickets:
+            if ticket.type == TicketType.EPIC or ticket.in_release_notes:
+                yield ticket
+
     def _build_jql(self, *args):
         filter_funcs = [
             self._project_filter,
-            self._release_notes_filter,
-            self._issue_type_filter,
-            self._ticket_filter,
             *args
         ]
         filters = []
@@ -56,32 +66,22 @@ class JiraSearch:
         _log.debug(filters)
         return '%s %s'%(' AND '.join(filters), self._ordering)
 
-    def _get_fields(self, ticket):
-        fields = dict(key=ticket.key)
-        if hasattr(ticket.fields, 'customfield_12102') and \
-            ticket.fields.customfield_12102 and \
-            ticket.fields.customfield_12102.strip():
-            fields['description'] = replace_jira_formatting(ticket.fields.customfield_12102)
-        else:
-            fields['description'] = ''
-        replace_jira_formatting(ticket.fields.description)
-        fields['severity'] = getattr(ticket.fields.customfield_10800,
-                                        'value', '--')
-        fields['components'] = [c.name for c in ticket.fields.components]
-        fields['fix_versions'] = [v.name for v in ticket.fields.fixVersions]
-        return fields
-
     def _get_issues(self, *args):
         query = self._build_jql(*args)
         _log.info('Using jql %s'%query)
-        for ticket in get_jira().search_issues(query, maxResults=False):
-            yield Ticket(**self._get_fields(ticket))
+        try:
+            for ticket in get_jira().search_issues(query, maxResults=False):
+                # print(vars(ticket))
+                yield build_ticket(ticket)
+        except Exception:
+            pass
 
-    def _sort_issues(self, issues):
+    def _sort_issues(self, issues, key='severity', **kwargs):
         return tuple(
             sorted(
                 list(issues),
-                key=lambda i: i.severity
+                key=lambda i: getattr(i, key),
+                **kwargs
             )
         )
 
@@ -89,8 +89,11 @@ class JiraSearch:
     def fixed(self):
         return self._sort_issues(
             self._get_issues(
+                self._release_notes_filter,
                 self._fixed_filter,
-                self._equ_version_filter
+                self._equ_version_filter,
+                self._issue_type_filter_bug,
+                self._ticket_filter,
             )
         )
 
@@ -98,15 +101,42 @@ class JiraSearch:
     def known(self):
         return self._sort_issues(
             self._get_issues(
-               self._known_filter,
-               self._gte_version_filter
+                self._release_notes_filter,
+                self._known_filter,
+                self._gte_version_filter,
+                self._issue_type_filter_bug,
+                self._ticket_filter,
             )
         )
+
+    @property
+    def new_features(self):
+        return list(self._feature_filter(
+            self._sort_issues(
+                self._get_issues(
+                    self._fixed_filter,
+                    self._equ_version_filter,
+                    self._issue_type_filter_epic
+                ), 'key', reverse=True
+            )
+        ))
+
+    @property
+    def improvements(self):
+        return list(self._feature_filter(
+            self._sort_issues(
+                self._get_issues(
+                    self._fixed_filter,
+                    self._equ_version_filter,
+                    self._issue_type_filter_improvement
+                ), 'key', reverse=True
+            )
+        ))
 
 class ZenkoSearch(JiraSearch):
     # We filter Zenko version manually as they are alphanumeric
     def __init__(self, version):
-        super().__init__(('zenko', 'znc', 'zenkoio'), version)
+        super().__init__(('zenko', 'zenkoio', 'ob'), version)
 
     def _gte_version_filter(self):
         return ''
@@ -114,14 +144,32 @@ class ZenkoSearch(JiraSearch):
     def _equ_version_filter(self):
         return ''
 
-    def _get_issues(self, *args):
+    def __filter_tickets(self, tickets, cmp):
         to_meet = parse_version(self._version)
-        for ticket in super()._get_issues(*args):
+        for ticket in tickets:
             for version in ticket.fix_versions:
                 ticket_version = parse_version(version)
-                if ticket_version is not None and ticket_version >= to_meet:
+                if ticket_version is not None and cmp(ticket_version, to_meet):
                     yield ticket
                     break
+
+    def __equ_version_filter(self, tickets):
+        return self.__filter_tickets(tickets, lambda x, y: x == y)
+
+    def __gte_version_filter(self, tickets):
+        return self.__filter_tickets(tickets, lambda x, y: x >= y)
+
+    @property
+    def fixed(self):
+        return list(self.__equ_version_filter(super().fixed))
+
+    @property
+    def known(self):
+        return list(self.__gte_version_filter(super().known))
+
+    @property
+    def new_features(self):
+        return list(self.__equ_version_filter(super().new_features))
 
 class S3CSearch(JiraSearch):
     def __init__(self, version):
