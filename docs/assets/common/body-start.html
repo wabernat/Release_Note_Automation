@@ -1,7 +1,13 @@
 <body>
   <div class="wrapper">
     <div class="headlogo"> <a href="https://zenko.io/">
+        {% if ctx.product.canonical == 'zenko' %}
         <img class="hlogo" src="{{ ctx.images.zenko_logo_black_png }}" alt="Logo" />
+        {% elif ctx.product.canonical == 'ring' %}
+        <img class="hlogo" src="{{ ctx.images.ring_logo_black_png }}" alt="Logo" />
+        {% elif ctx.product.canonical == 's3c' %}
+        <img class="hlogo" src="{{ ctx.images.ring_s3c_logo_black_png }}" alt="Logo" />
+        {% endif %}
       </a>
     </div>
     <h1> Release Notes</h1>
