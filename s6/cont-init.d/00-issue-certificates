@@ -1,4 +1,8 @@
 #!/usr/bin/with-contenv sh
 
-echo "Issuing certificates for $LEGO_DOMAINS"
-exec /usr/bin/issue-certs run
+if [ -n "$ENABLE_LEGO" ]; then
+    echo "Issuing certificates for $LEGO_DOMAINS"
+    exec /usr/bin/issue-certs run
+else
+    exit 0
+fi

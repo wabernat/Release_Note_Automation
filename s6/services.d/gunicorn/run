@@ -1,10 +1,16 @@
 #!/usr/bin/with-contenv sh
 
+GUNICORN_PORT="80"
+GUNICORN_OPTS=""
+
+if [ -n "$ENABLE_LEGO" ]; then
+    GUNICORN_OPTS="--certfile /lego/certificates/${LEGO_DOMAINS}.crt --keyfile /lego/certificates/${LEGO_DOMAINS}.pem"
+    GUNICORN_PORT="443"
+fi
+
 cd /usr/local/src/notomaton
 exec gunicorn \
-    --bind "0.0.0.0:443" \
-    --workers 2 \
-    --certfile /lego/certificates/${LEGO_DOMAINS}.crt \
-    --keyfile /lego/certificates/${LEGO_DOMAINS}.pem \
+    --bind "0.0.0.0:$GUNICORN_PORT" \
+    --workers 2 $GUNICORN_OPTS \
     notomaton.app:app
 
