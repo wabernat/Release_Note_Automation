@@ -8,7 +8,7 @@ class Product(Enum):
 PRODUCT_TO_NAME = {
     Product.ZENKO: 'Zenko',
     Product.S3C: 'S3 Connector',
-    Product.RING: 'Ring',
+    Product.RING: 'RING',
 }
 
 PRODUCT_TO_CANONICAL = {
