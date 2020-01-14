@@ -5,6 +5,8 @@
 
 {% for item in ctx.tickets %}
 <h3><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</a> {{ item.title }}</h3>
-{{ item.description }}
+<p>
+    {{ item.description }}
+</p>
 {% endfor %}
 {% endif %}
