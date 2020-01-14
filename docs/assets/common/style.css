@@ -49,6 +49,11 @@ body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+p {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    margin-left: 10px
+}
+
 div.wrapper {
     padding: 0px 40px 20px 40px;
 }
