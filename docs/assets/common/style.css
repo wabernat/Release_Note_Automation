@@ -80,7 +80,7 @@ table, th, tr, td {
 
 td {
     vertical-align: top;
-    padding: 2px 15px;
+    padding: 0px;
 }
 
 td.nowrap {
@@ -95,6 +95,7 @@ table thead {
 td p {
     vertical-align: top;
     padding: -2px 15px;
+    margin-block-start: 0em;
 }
 
 /*
