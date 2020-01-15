@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /*
@@ -166,10 +166,9 @@ div.footer a, div.footer a:hover {
 /* Complex Selectors */
 
 td p {
-    padding: -2px 15px;
     margin-block-start: 0em;
 }
 
-h3 p {
+h3 > p {
     margin-left: 1%;
 } 
