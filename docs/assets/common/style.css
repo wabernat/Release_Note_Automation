@@ -92,6 +92,11 @@ table thead {
     font-weight: bold;
 }
 
+td p {
+    vertical-align: top;
+    padding: 2px 15px;
+}
+
 /*
  * Links
  */
