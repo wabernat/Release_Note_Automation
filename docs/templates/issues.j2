@@ -12,12 +12,10 @@
 
     {% for item in ctx.tickets %}
     <tr>
-        <td class="nowrap"><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</td>
-        <td>{{ item.severity }}</td>
-        <td>
-            <p>{{ item.components|join(' ') }}</p>
-        </td>
-        <td style="width=100">{{ item.description }}</td>
+        <td class="nowrap"><p><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</p></td>
+        <td><p>{{ item.severity }}</p></td>
+        <td><p>{{ item.components|join(' ') }}</p></td>
+        <td style="width=100"><p>{{ item.description }}</p></td>
     </tr>
     {% endfor %}
 
