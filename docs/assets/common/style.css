@@ -1,4 +1,4 @@
-import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /*
@@ -169,6 +169,6 @@ td p {
     margin-block-start: 0em;
 }
 
-h3 > p {
+h3 ~ p {
     margin-left: 1%;
 } 
