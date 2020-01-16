@@ -49,12 +49,17 @@ body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+p {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+/*    margin-left: 10px */
+}
+
 div.wrapper {
     padding: 0px 40px 20px 40px;
 }
 
 div.wrapper > p {
-    padding: 0px 45px;
+    padding: 0px;
 }
 
 body li {
@@ -75,7 +80,7 @@ table, th, tr, td {
 
 td {
     vertical-align: top;
-    padding: 2px 15px;
+    padding: 3px;
 }
 
 td.nowrap {
@@ -157,3 +162,14 @@ div.footer a, div.footer a:hover {
     width: 12%;
     height: 12%;
 }
+
+/* Complex Selectors */
+
+td p {
+    margin-block-start: 0em;
+    margin-block-end: 3px;
+}
+
+h3 ~ p {
+    margin-left: 1%;
+} 
