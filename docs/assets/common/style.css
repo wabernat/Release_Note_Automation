@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6, caption {
     padding: 3px 0 3px 0px;
 }
 
+h1 {
+    padding-top: 20px;
+}
+
 h2 {
     font-size: 1.3em;
     font-family: 'Oswald SemiBold';
@@ -170,8 +174,8 @@ div.footer div.rightwrapper img.social {
  * Logos
  */
 .logo {
-    width: 23%;
-    margin-bottom: 7%;
+    width: 250px;
+    margin-bottom: 16pt;
 }
 
 .hlogo {
