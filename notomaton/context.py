@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-from .constants import PRODUCT_TO_NAME, PRODUCT_TO_CANONICAL
+from .constants import PRODUCT_TO_NAME, PRODUCT_TO_CANONICAL, PRODUCT_DOC_NAME
 from .search import do_search
 from .assets import discover_images
 
@@ -30,7 +30,8 @@ def build_context(product, version, dashboard=False):
         product = Product(
             name=PRODUCT_TO_NAME[product],
             canonical=PRODUCT_TO_CANONICAL[product],
-            version=version
+            version=version,
+            doc_name=PRODUCT_DOC_NAME[product]
         ),
         issues = build_issues(product, version),
         images = build_images(),
