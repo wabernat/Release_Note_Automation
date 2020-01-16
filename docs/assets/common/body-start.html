@@ -1,12 +1,15 @@
 <body>
   <div class="wrapper">
-    <div class="headlogo"> <a href="https://zenko.io/">
+    <div class="headlogo">
         {% if ctx.product.canonical == 'zenko' %}
-        <img class="hlogo" src="{{ ctx.images.zenko_logo_black_png }}" alt="Logo" />
+        <a href="https://www.zenko.io/">
+          <img class="hlogo" src="{{ ctx.images.zenko_logo_black_png }}" alt="Logo" />
         {% elif ctx.product.canonical == 'ring' %}
-        <img class="hlogo" src="{{ ctx.images.ring_logo_black_png }}" alt="Logo" />
+        <a href="https://www.scality.com/products/ring/">
+          <img class="hlogo" src="{{ ctx.images.ring_logo_black_png }}" alt="Logo" />
         {% elif ctx.product.canonical == 's3c' %}
-        <img class="hlogo" src="{{ ctx.images.ring_s3c_logo_black_png }}" alt="Logo" />
+        <a href="https://www.scality.com/products/ring/">
+          <img class="hlogo" src="{{ ctx.images.ring_s3c_logo_black_png }}" alt="Logo" />
         {% endif %}
       </a>
     </div>
