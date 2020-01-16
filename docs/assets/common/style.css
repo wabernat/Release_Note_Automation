@@ -108,16 +108,40 @@ text-decoration: none;
 /*
  Footer
  */
+footer{
+    margin-top: 5%
+}
+
 div.footer {
-    grid-area: footer;
     width: auto;
     padding: 20px;
-    display: flex;
     background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+div.footer a, div.footer a:hover {
+    text-decoration: none;
     color: #FFFFFF;
 }
 
-div.footer div.rightwrapper {
+
+div.footer div.links {
+    display: inline-block;
+    width: 50%
+}
+
+div.footer div.social {
+    display: inline-block;
+}
+
+div.footer div.social img {
+    margin: auto 12px;
+      height: 25px;
+}
+
+
+/* div.footer div.rightwrapper {
     display: flex;
     flex-grow: 1;
     padding-right: 15px;
@@ -131,19 +155,12 @@ div.footer div.leftwrapper {
     align-items: flex-start;
 }
 
-footer{
-    margin-top: 5%
-}
 
 div.footer div.rightwrapper img.social {
     margin: auto 12px;
     width: 25%;
-}
+} */
 
-div.footer a, div.footer a:hover {
-    text-decoration: none;
-    color: #FFFFFF;
-}
 
 /*
  * Logos
