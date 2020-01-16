@@ -23,6 +23,12 @@ CANONICAL_TO_PRODUCT = {
     'ring': Product.RING
 }
 
+PRODUCT_DOC_NAME = {
+    Product.ZENKO: 'Zenko',
+    Product.RING: 'RING',
+    Product.S3C: 'S3C',
+}
+
 class TicketType(Enum):
     BUG = 1
     IMPROVEMENT = 4
