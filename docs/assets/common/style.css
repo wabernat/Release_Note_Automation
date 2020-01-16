@@ -167,7 +167,7 @@ div.footer a, div.footer a:hover {
 
 td p {
     margin-block-start: 0em;
-    margin-block-enf: 3px;
+    margin-block-end: 3px;
 }
 
 h3 ~ p {
