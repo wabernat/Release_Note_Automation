@@ -122,10 +122,10 @@ footer{
 
 div.footer {
     width: auto;
-    padding: 20px;
+    padding: 15px;
     background-color: #000000;
     color: #FFFFFF;
-    text-align: center;
+    text-align: left;
 }
 
 div.footer a, div.footer a:hover {
@@ -133,14 +133,20 @@ div.footer a, div.footer a:hover {
     color: #FFFFFF;
 }
 
+div.footer div.baselogo {
+    float: left;
+}       
 
 div.footer div.links {
     display: inline-block;
-    width: 50%
+    width: 50%;
+    text-align: right;
+    margin-top: 15px;
+    vertical-align: top;
 }
 
 div.footer div.social {
-    display: inline-block;
+    text-align: center;
 }
 
 div.footer div.social img {
