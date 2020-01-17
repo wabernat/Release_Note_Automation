@@ -8,7 +8,7 @@ Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_das
 
 Issues = namedtuple('Issues', ['known', 'fixed', 'new_features', 'improvements'])
 
-Product = namedtuple('Product', ['name', 'canonical', 'version'])
+Product = namedtuple('Product', ['name', 'canonical', 'version', 'doc_name'])
 
 def build_issues(product, version):
     search = do_search(product, version)
