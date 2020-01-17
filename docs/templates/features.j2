@@ -1,4 +1,4 @@
-{% if ctx.tickets %}
+{# {% if ctx.tickets %}
 <h2>{{ ctx.feature_type }} for {{ ctx.product.name }} Version {{ ctx.product.version }}</h2>
 
 {{ ctx.product.name }} introduces the following new features in release {{ ctx.product.version }}.
@@ -9,4 +9,28 @@
     {{ item.description }}
 </p>
 {% endfor %}
+{% endif %} #}
+{% if ctx.tickets %}
+<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} Version {{ ctx.product.version }}</h2>
+<table>
+    <thead>
+        <tr>
+            <td>Key</td>
+            <td>Title</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+
+    {% for item in ctx.tickets %}
+    <tr>
+        <td class="nowrap"><p><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</p></td>
+        <td><p>{{ item.title }}</p></td>
+        {# <td><p>{{ item.components|join(' ') }}</p></td> #}
+        <td style="width=100"><p>{{ item.description }}</p></td>
+    </tr>
+    {% endfor %}
+
+</table>
+{# {% else %}
+No {{ ctx.issue_type }} Issues #}
 {% endif %}
