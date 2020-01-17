@@ -54,6 +54,10 @@ p {
 /*    margin-left: 10px */
 }
 
+code {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
 div.wrapper {
     padding: 0px 40px 20px 40px;
 }
