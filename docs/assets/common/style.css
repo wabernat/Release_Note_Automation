@@ -134,8 +134,8 @@ div.footer div.baselogo {
 }       
 
 div.footer div.links {
-    display: inline-block;
-    width: 50%;
+/*    display: inline-block;
+    width: 50%; */
     text-align: right;
     margin-top: 15px;
     vertical-align: top;
