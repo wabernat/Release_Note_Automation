@@ -1,5 +1,8 @@
 templates:
     issues:
+        improvement:
+            issue_type: Improvements
+            tickets: '$ctx.issues.improvements'
         known:
             issue_type: Known
             tickets: '$ctx.issues.known'
@@ -10,6 +13,3 @@ templates:
         new:
             feature_type:  New
             tickets: '$ctx.issues.new_features'
-        improvement:
-            feature_type: Improvements
-            tickets: '$ctx.issues.improvements'

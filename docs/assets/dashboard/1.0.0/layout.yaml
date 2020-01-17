@@ -7,6 +7,6 @@ style:
 
 layout:
   - $templates/features.new
-  - $templates/features.improvement
+  - $templates/issues.improvement
   - $templates/issues.fixed
   - $templates/issues.known
