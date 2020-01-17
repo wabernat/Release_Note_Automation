@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6, caption {
     padding: 3px 0 3px 0px;
 }
 
+h1 {
+    padding-top: 20px;
+}
+
 h2 {
     font-size: 1.3em;
     font-family: 'Oswald SemiBold';
@@ -118,10 +122,10 @@ footer{
 
 div.footer {
     width: auto;
-    padding: 20px;
+    padding: 15px;
     background-color: #000000;
     color: #FFFFFF;
-    text-align: center;
+    text-align: left;
 }
 
 div.footer a, div.footer a:hover {
@@ -129,14 +133,20 @@ div.footer a, div.footer a:hover {
     color: #FFFFFF;
 }
 
+div.footer div.baselogo {
+    float: left;
+}       
 
 div.footer div.links {
-    display: inline-block;
-    width: 50%
+/*    display: inline-block;
+    width: 50%; */
+    text-align: right;
+    margin-top: 15px;
+    vertical-align: top;
 }
 
 div.footer div.social {
-    display: inline-block;
+    text-align: center;
 }
 
 div.footer div.social img {
@@ -170,8 +180,8 @@ div.footer div.rightwrapper img.social {
  * Logos
  */
 .logo {
-    width: 23%;
-    margin-bottom: 7%;
+    width: 250px;
+    margin-bottom: 16pt;
 }
 
 .hlogo {
@@ -180,8 +190,7 @@ div.footer div.rightwrapper img.social {
 }
 
 .headlogo {
-    width: 12%;
-    height: 12%;
+    width: 250px;
 }
 
 /* Complex Selectors */
