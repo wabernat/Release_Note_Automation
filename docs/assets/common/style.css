@@ -16,7 +16,7 @@
  * Headings
  */
 h1, h2, h3, h4, h5, h6, caption {
-    font-family: Oswald, "Arial Narrow", "Helvetica Narrow", sans-serif;
+    font-family: "Oswald", "Arial Narrow", "Helvetica Narrow", sans-serif;
     font-weight: 600;
     color: #000;
     border-bottom: 1px solid #ccc;
@@ -30,13 +30,13 @@ h1 {
 
 h2 {
     font-size: 1.3em;
-    font-family: 'Oswald SemiBold';
+    font-family: 'Oswald';
     margin-bottom: 2%;
 }
 
 h3 {
     font-size: 1.1em;
-    font-family: 'Oswald SemiBold';
+    font-family: 'Oswald';
     padding-left: 1%;
     margin-bottom: 2%;
     margin-top: 2%;
@@ -44,17 +44,17 @@ h3 {
 
 h4 {
     font-size: 1em;
-    font-family: 'Oswald SemiBold';
+    font-family: 'Oswald';
 }
 
 h5 {
     font-style: italic;
-    font-family: 'Oswald SemiBold';
+    font-family: 'Oswald';
 }
 
 h6 {
     font-variant: small-caps;
-    font-family: 'Oswald SemiBold';
+    font-family: 'Oswald';
 }
 
 /*
