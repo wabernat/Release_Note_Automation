@@ -70,7 +70,7 @@ p {
 }
 
 code {
-    font-family: "Courier New", monospace;
+    font-family: Courier, "Courier New", "Liberation Mono", monospace;
 }
 
 div.wrapper {
