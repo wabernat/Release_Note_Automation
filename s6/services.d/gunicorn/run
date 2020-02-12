@@ -12,5 +12,6 @@ cd /usr/local/src/notomaton
 exec gunicorn \
     --bind "0.0.0.0:$GUNICORN_PORT" \
     --workers 2 $GUNICORN_OPTS \
+    --timeout 60 \
     notomaton.app:app
 
