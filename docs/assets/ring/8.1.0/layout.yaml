@@ -15,9 +15,9 @@ layout:
   - common/header.html
   - common/body-start.html
   - $templates/features.new
-  - $templates/issues.improvement
   - common/documentation_links.html
   - common/issue_header.html
+  - $templates/issues.improvement
   - $templates/issues.fixed
   - $templates/issues.known
   - common/footer.html
