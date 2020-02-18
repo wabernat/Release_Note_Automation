@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  notomaton:
+    image: tmacro/notomaton:latest
+    ports:
+      - 443:443
+    volumes:
+      - './certificates:/lego'
+    restart: 'unless-stopped'
+    env_file: deploy.env
+    environment:
+      ENABLE_LEGO: 'true'
+      LEGO_STAGING: ''
+      NOTOMATON_RUNTIME_ASSET_PATH: /usr/local/share
+      LEGO_CHALLENGES: tls
+
+
+
+
