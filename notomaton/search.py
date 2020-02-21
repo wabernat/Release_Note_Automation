@@ -23,6 +23,9 @@ class JiraSearch:
     def _release_notes_filter(self):
         return '"Release notes" != "No"'
 
+    def _release_notes_epic_filter(self):
+        return '("Release notes" is EMPTY OR "Release notes" != No)'
+
     def _gte_version_filter(self):
         return f'fixVersion >= {self._version}'
 
@@ -114,6 +117,7 @@ class JiraSearch:
         return list(self._feature_filter(
             self._sort_issues(
                 self._get_issues(
+                    self._release_notes_epic_filter,
                     self._fixed_filter,
                     self._equ_version_filter,
                     self._issue_type_filter_epic
