@@ -4,7 +4,9 @@
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/installation/index.html>{{ ctx.product.name }} Installation</a></em></li>
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/operation/index.html>{{ ctx.product.name }} Operation</a></em></li>
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/reference/index.html>{{ ctx.product.name }} Reference</a></em></li>
-{% if ctx.product.canonical != 'ring' %}</ul>{% endif %}
+{% if ctx.product.canonical != 'ring' %}
+</ul>
+{% endif %}
 {% if ctx.product.canonical = 'ring' %}
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/supervisor/index.html> RING Supervisor</a></em></li>
 </ul>
