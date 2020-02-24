@@ -98,9 +98,17 @@ table thead {
     font-weight: bold;
 }
 
-table.definition, th, td {
-    border-left: none;
-    border-right: none;
+table.hline, table.hline * {
+    border: none;
+    
+}
+
+table.hline tr {
+    border-bottom: 1px solid black;
+}
+
+table.hline tr:last-child {
+    border-bottom: none;
 }
 
 /*
