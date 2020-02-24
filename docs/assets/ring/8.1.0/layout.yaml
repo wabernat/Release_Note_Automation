@@ -14,6 +14,7 @@ style:
 layout:
   - common/header.html
   - common/body-start.html
+  - common/test.html
   - common/ring_common.html
   - $templates/features.new
   - common/documentation_links.html
