@@ -1,0 +1,64 @@
+<html>
+
+<quote>Scality RING 8 consists of two distinct components, the RING and the S3 Connector.
+Because these components are on separate development paths, each RING 8 release may embed version
+increments of each that differ. The initial release of RING 8, for example, comprised RING v8.0.0.0 and
+  S3 Connector v7.5.0.0.</quote>
+<h1>RING8 Product Organization</h1>
+<h2>Scality RING Core, Installation, Supervision and Monitoring</h2>
+<ul>
+  <li>All core RING features, including the full scale-out architecture,
+    self-healing, flexible data protection policies with replication and
+    Advanced Resiliency Configuration (ARC) erasure coding. It also includes
+    RING core improvements that enable better performance, scalability and
+    maintainability.</li>
+  <li>The Scality RING Installer and its set of pre-install and post-install
+    check tools. Its hardware inventory enables streamlining typical RING
+    installations on known x86 hardware.</li>
+  <li>The RingSH command line interface, the Supervisor UI, and the set of
+    RESTFul APIs for Scality RING management and monitoring (cloud or
+    local).</li>
+  <li>Support for single-site and multiple (2 or 3) site geo-distributed
+    deployments for file and object connectors.</li>
+</ul>
+
+<h2>Scality Object Connectors</h2>
+<table>
+<tr><td>S3 Connector</td><td>Scality S3 Connector is compatible with AWS S3 and IAM security
+services. It can also be integrated with Microsoft Active Directory
+or other enterprise directory software that supports the SAML
+protocol.</td></tr>
+<tr><td>Native REST connector</td><td>Sproxyd is Scality’s native REST API connector</td></tr>
+</table>
+
+<h2>Scality SOFS (Scale-Out Filesystem) Connector Options</h2>
+
+<table>
+<tr><td>FUSE (sfused) connector</td><td>Local Linux host file system access to RING storage services.</td></tr>
+<tr><td>NFSv3 connector</td><td>Standard NFSv3 network file protocol mountpoint access to RING
+storage services.</td></tr>
+<tr><td>NFS Ganesha connector</td><td>New NFS connector supporting the NFSv3 and NFSv4 protocols,
+IPv6 support, Kerberos authentication, and POSIX ACL.</td></tr>
+<tr><td>SMB 2.0/3.0 connector</td><td>SMB 2.0 and SMB 3.0 (subset)-compliant access over shares to
+RING storage services.</td></tr>
+<tr><td>CDMI REST connector</td><td>SNIA CDMI 1.0.1-compliant REST interface, with access by path
+    semantics.</td></tr>
+<tr><td>Multi-tenant & Kerberos Option</td><td>Optional Kerberos KDC/Microsoft Active Directory server-based
+authentication support for NFSv3 and SMB 2.0/3.0 connectors.</td></tr>
+</table>
+
+<h2>Email/Messaging Connectors</h2>
+<table>
+  <tr><td>Zimbra 8.0.3 and later, and X</td><td>For support of the Zimbra
+      Collaboration solution version 8 (http://www.zimbra.com/) over the Scality
+      RING Sproxyd REST connector.</td></tr>
+  <tr><td>Dovecot PRO</td><td>Supported via Scality RING sproxyd connector for
+      single and multi-geo deployments. Existing single-site deployments of
+      Dovecot PRO with CDMI continue to be supported, however support is
+      deprecated for new deployments.</td></tr>
+  <tr><td>Openwave Messaging Mx 8.4 and later</td><td>For support of the
+      Openwave Mx Messaging solution suites
+      (http://owmessaging.com/universal-messaging-suite-email-mx) over the
+      Scality RING RS2 Lite connector.</td></tr>
+  </table>
+</html>
