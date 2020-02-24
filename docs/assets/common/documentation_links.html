@@ -4,6 +4,9 @@
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/installation/index.html>{{ ctx.product.name }} Installation</a></em></li>
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/operation/index.html>{{ ctx.product.name }} Operation</a></em></li>
 <li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/reference/index.html>{{ ctx.product.name }} Reference</a></em></li>
+{% if ctx.product.canonical != 'zenko' %}
+<li><em><a href=https://documentation.scality.com/{{ ctx.product.doc_name }}/{{ ctx.product.version }}/supervisor/index.html>RING Supervisor</a></em></li>
+{% endif %}
 </ul>
 {% if ctx.product.canonical != 'zenko' %}
 <p>Documentation for RING/S3 Connector 7.4.1 (and earlier) is available for download (PDF only) at <a href="https://docs.scality.com" target="_blank">docs.scality.com</a>.</p>
