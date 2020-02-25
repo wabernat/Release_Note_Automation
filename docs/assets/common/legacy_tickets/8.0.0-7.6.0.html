@@ -1,14 +1,23 @@
+<!--<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>-->
 <h1>Issues from Previous Releases</h1>
 
 <p>The following issues were known or fixed in RING version 8.0.0.0 and S3
-  Connector version 7.5.0.2.</p>  
+  Connector version 7.5.0.0.</p>  
 
 <h2>Known Issues/Workarounds</h2>
 <p>Known Issues/Workarounds in RING 8.0.0.0/S3C 7.5.0.0</p>
 <table>
+  <col width="100">
+  <col width="100">
+  <col width="100">
+  <col width="500">
   <thead>
     <tr>
-      <td>
+      <td class="nowrap">
 	Ticket
       </td>
       <td>
@@ -17,7 +26,7 @@
       <td>
 	Component
       </td>
-      <td>
+      <td style="width=100">
 	Ticket Description
       </td>
     </tr>
@@ -43,7 +52,7 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="nowrap">
 	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31615">RING-31615</a></p>
       </td>
       <td>
@@ -61,7 +70,7 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td class="nowrap">
 	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30839">RING-30839</a></p>
       </td>
       <td>
@@ -811,6 +820,10 @@
 <p>Fixed Issues/Enhancements in RING8 (sorted first by Severity, then by Ticket)</p>
 
 <table>
+  <col width="100">
+  <col width="100">
+  <col width="100">
+  <col width="500">
   <thead>
     <tr>
       <td>
@@ -1629,7 +1642,8 @@
 	<p>utapi</p>
       </td>
       <td>
-	<p>The tme range validation performed by the UTAPI server can lead to the start time being greater than the end time.</p>
+	<p>The time range validation performed by the UTAPI server can lead to
+	the start time being greater than the end time.</p>
 	<ol>
 	  <li>When providing a time range where the start is greater than the
 	  end, an inaccurate error message was returned.
@@ -1711,3 +1725,6 @@
     </tr>
   </tbody>
 </table>
+<!--  </body>
+  </html>
+-->
