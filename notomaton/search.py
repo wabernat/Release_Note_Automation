@@ -133,7 +133,7 @@ class JiraSearch:
                     self._fixed_filter,
                     self._equ_version_filter,
                     self._issue_type_filter_improvement
-                ), 'key', reverse=True
+                ), reverse=True
             )
         ))
 
