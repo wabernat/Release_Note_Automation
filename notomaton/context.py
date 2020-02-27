@@ -5,7 +5,7 @@ from .search import do_search
 from .assets import discover_images
 from datetime import date
 
-Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_dashboard', 'timestamp'])
+Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_dashboard', 'date'])
 
 Issues = namedtuple('Issues', ['known', 'fixed', 'new_features', 'improvements'])
 
