@@ -14,11 +14,13 @@ style:
 layout:
   - common/header.html
   - common/body-start.html
+  - common/ring_common.html
   - $templates/features.new
   - common/documentation_links.html
   - common/issue_header.html
   - $templates/issues.improvement
   - $templates/issues.fixed
   - $templates/issues.known
+  - common/legacy_tickets/8.0.0-7.6.0.html
   - common/footer.html
   - common/body-end.html

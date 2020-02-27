@@ -1,0 +1,1730 @@
+<!--<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>-->
+<h1>Issues from Previous Releases</h1>
+
+<p>The following issues were known or fixed in RING version 8.0.0.0 and S3
+  Connector version 7.5.0.0.</p>  
+
+<h2>Known Issues/Workarounds</h2>
+<p>Known Issues/Workarounds in RING 8.0.0.0/S3C 7.5.0.0</p>
+<table>
+  <col width="auto">
+  <col width="auto">
+  <col width="auto">
+  <col width="auto">
+  <thead>
+    <tr>
+      <td class="nowrap">
+	Ticket
+      </td>
+      <td>
+	Severity
+      </td>
+      <td>
+	Component
+      </td>
+      <td style="width=100">
+	Ticket Description
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/MD-712">MD-712</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Metadata</p>
+      </td>
+      <td>
+	<p>When a bucket contains a large number (10K or more) of delete markers
+	(especially if these delete markers are consecutive), listing objects in
+	the bucket can timeout due to the need to skip many of delete markers
+	without any listing output.</p>
+	<p><strong>Workaround:</strong> Keep the number of delete markers low,
+          by regularly cleaning older versions from the bucket.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="nowrap">
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31615">RING-31615</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>dewpoint, geosync</p>
+      </td>
+      <td>
+	<p>The temporary journal folder of the passive connector server is
+	removed by systemd, which results in a journal not generating.</p>
+	<p><strong>Workaround:</strong> Launch the following command on the
+	source site&#39;s connector servers:</p>
+	<p>echo "x /var/tmp/geosync" &gt;&gt; /usr/lib/tmpfiles.d/scality-dewpoint-fcgi.conf</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="nowrap">
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30839">RING-30839</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>packaging</p>
+      </td>
+      <td>
+	<p>The Samba packages Scality provides are vulnerable to CVE-2019-3870
+	  and CVE-2019-3880.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2169">S3C-2169</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>S3 objects have user-defined tags whose values are larger than 256 Unicode characters.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2151">S3C-2151</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Backbeat</p>
+      </td>
+      <td>
+	<p><a href="mailto:crypto-browserify@1.0.9" target="_blank">Test
+	conducted at sync.io detects high-severity security issue: Insecure
+	randomness in </a>crypto-browserify@1.0.9 via aws-sdk &lt;2.178.0 (which
+	  does not pose an active threat to CloudServer as deployed).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2150">S3C-2150</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Arsenal</p>
+      </td>
+      <td>
+	<p><a href="mailto:crypto-browserify@1.0.9" target="_blank">Test
+	conducted at sync.io detects high-severity security issue: Insecure
+	randomness in </a>crypto-browserify@1.0.9 via aws-sdk &lt;2.178.0 (which
+	does not pose an active threat to CloudServer as deployed).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31538">RING-31538</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>installer</p>
+      </td>
+      <td>
+	<p>During an upgrade, the vm.min_free_kbytes setting, typically set to
+	2 GB, can reset to its default value, which can potentially create
+	stability issues on busy platforms.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30941">RING-30941</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>geosync</p>
+      </td>
+      <td>
+	<p>The GEOS feature breaks when files are quickly renamed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31509">RING-31509</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>nfs ganesha</p>
+      </td>
+      <td>
+	<p>With kernel 4.18.0 in a NFS Ganesha mount, just after creation (with
+	touch) the ls command does not present files.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30856">RING-30856</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>bizio</p>
+      </td>
+      <td>
+	<p>The disk error detection is triggered when a read/write issue occurs on a RING. When multiple RINGs share the same disk, a read/write error is not propagated to the other RINGs. In that particular case, a disk in error can continue to receive read/write requests from the nodes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30835">RING-30835</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>diskmgt, python-scaldisk</p>
+      </td>
+      <td>
+	<p>SmartArray P408i/e controllers are configured in HBA mixed by default.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2393">S3C-2393</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>After setting up a RING to use chord_cos (exclusive replication) instead of ARC, PUTting an object via AWS CLI creates one and only one object.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2257">S3C-2257</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Vault</p>
+      </td>
+      <td>
+	<p>With case-sensitive user names, S3 Connector violates S3 protocol.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2081">S3C-2081</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>The lack of a locking mechanism prevents simultaneous writes to the same object, which can lead to orphan creation.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1941">S3C-1941</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Metadata</p>
+      </td>
+      <td>
+	<p>During a rolling upgrade, buckets created through a 7.4 stateless server cannot be manipulated through a 7.2 stateless server.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1637">S3C-1637</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>S3Console</p>
+      </td>
+      <td>
+	<p>With S3 console v. 7.4.0.4, although users can create an account and a valid access key/secret key pair they cannot see these listed when clicking the key icon.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1411">S3C-1411</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>sproxydclient</p>
+      </td>
+      <td>
+	<p>TCP memory leak in unidentified circumstances.</p>
+	<p><strong>Workaround:</strong> Run docker restart scality-sproxyd command.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31112">RING-31112</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>diskmgt, python-scaldisk</p>
+      </td>
+      <td>
+	<p>In the event the data disks (i.e., each biziod) host multiple RINGs,
+	the scaldisk replace command will not work if the two {RINGx + given
+	failed disk/biziod} are not OOS_PERM.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31060">RING-31060</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>geosync</p>
+      </td>
+      <td>
+	<p>GEOS tooling takes arguments from the CLI and not by reading config files.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31045">RING-31045</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizio, ringsh, supapi, supgui</p>
+      </td>
+      <td>
+	<p>Metrics do not exist for measuring ARC rebuilt failures (which thus
+	impedes error detection).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31489">RING-31489</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>Passwords for storage node "admin" login pages lack the
+	"autocomplete=off" attribute.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30860">RING-30860</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>elasticsearch, tracer</p>
+      </td>
+      <td>
+	<p>With the upgrade to a newer version of the Elastic stack, output from
+	the tracer can no longer be imported into ElasticSearch.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30672">RING-30672</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>installer, python-scaldisk</p>
+      </td>
+      <td>
+	<p>The Installer relies on the server manufacturer name (and not the name of the raid controller) for installing raid controller CLI and scaldisk plugins.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30471">RING-30471</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node, ringsh</p>
+      </td>
+      <td>
+	<p>cleancost connections time out during key collection on large nodes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30441">RING-30441</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>setup, srebuildd</p>
+      </td>
+      <td>
+	<p>By default, Apache does not listen on IPv4 when processing the
+	"Listen 81" directive in RHEL 7.6 (it does listen on IPv6). This applies
+	to storage servers in /etc/httpd/conf.d/scality-sd.conf and, notably, is
+	used by the Garbage Collector for S3.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-29699">RING-29699</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizio, packaging</p>
+      </td>
+      <td>
+	<p>With a v. 7.4.1.0 RING (or a RING that was upgraded to 7.4.1.0), the
+	biziod configuration may have been manually changed to recognize the
+	accidental setting of the &ldquo;timeslots&rdquo; setting instead of the
+	ts option. In RING 7.4.2 and later, this change has been reverted and
+	may once again lead to an unrecognized timeslot option from biziod
+	configuration.</p>
+	<p><strong>Workaround:</strong> Replace the timeslots option with the ts
+	option in the /etc/biziod configuration files.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-28280">RING-28280</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizio, packaging</p>
+      </td>
+      <td>
+	<p>A full biziod restart will sometimes result in some of the biziod
+	instances not starting up, this despite systemd showing that the command
+	has been successfully executed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-27686">RING-27686</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>sagentd, supervisor, supgui</p>
+      </td>
+      <td>
+	<p>As sagentd overwrites the status in Elasticsearch every time polling
+	occurs, the node count offered in Grafana is not consistent over time
+	(there is no issue on the RING).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-27342">RING-27342</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>elasticsearch, grafana, supervisor</p>
+      </td>
+      <td>
+	<p>The Capacity graph in the Supervisor is potentially buggy, displaying for some time a capacity that is double the true measurement.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26028">RING-26028</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>setup</p>
+      </td>
+      <td>
+	<p>Scaldisk is not functional on Ubuntu due to the lack of available
+	raid controller CLI packages (hpssacli/perccli/storcli).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25617">RING-25617</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>installer, supervisor</p>
+      </td>
+      <td>
+	<p>Installing sproxyd on the Supervisor makes the Supervisor GUI
+	inaccessible because it comments out listening port 80 in the Apache
+	(httpd) configuration file.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25021">RING-25021</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>diskmgt</p>
+      </td>
+      <td>
+	<p>Add a scaldisk option to encrypt disks prior to formatting.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-22574">RING-22574</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>sagentd</p>
+      </td>
+      <td>
+	<p>Offline nodes are not shown in the Grafana monitoring dashboard.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-22532">RING-22532</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>installer, packaging, sreport</p>
+      </td>
+      <td>
+	<p>All default log filenames for daemons are /var/log/scality-&lt;daemon&gt;.log (whereas they must be /var/log/scality/&lt;daemon&gt;.log).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2408">S3C-2408</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>s3, utapi</p>
+      </td>
+      <td>
+	<p>When an MPU object overwrites another object in a non-versioned
+	bucket, UTAPI returns an incorrect "storage utilized" metric.</p>
+	<p><strong>Workaround:</strong> Let the UTAPI reindexer run. It will
+	correct the "storage utilized" value.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2378">S3C-2378</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Vault</p>
+      </td>
+      <td>
+	<p>A new action type, "metadata:*", has been introduced for creating an
+	S3C policy for out-of-band Zenko updates. Policies applying the
+	metadata:* action to the ingestion- producer bucket crash S3C with a 403
+	error, indicating that the bucket cannot be found in the Raft
+	sessions.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2353">S3C-2353</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>When making a cross-origin request where the request header origin is
+	defined, any lifecycle configuration error results in
+	a <strong>bucket.getCors is not a function</strong> error and a server
+	crash.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2274">S3C-2274</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>Stopping the S3/CloudServer process during setup prior to server
+	startup results in a <strong>Cannot read property 'close' of
+	undefined.</strong> error (and an unsuccessful exit).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2239">S3C-2239</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>Failing and recovering a 12-node stretched site, it is possible to "recover" running on only a single site, using only minority nodes, yet receive a playbook ending <strong>OK</strong>.</p>
+	<p><strong>Workaround:</strong> Run:
+	<code># ./ansible-playbook -i env/s3config/inventory
+	./tooling-playbooks/refresh-metadata-topology.yml</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1935">S3C-1935</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>An exception is thrown in the case of a callback that was already
+	called.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1899">S3C-1899</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Metadata</p>
+      </td>
+      <td>
+	<p>checkBackup.js tool uses V6 backup schema to get the number of
+	backups generated, missing backups (including Raft sessions) created
+	from V7.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1801">S3C-1801</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Arsenal, S3</p>
+      </td>
+      <td>
+	<p>S3 Connector does not implement the following condition keys:</p>
+	<p>s3:ExistingObjectTag</br>
+	  s3:RequestObjectTagKeys</br>
+	  s3:RequestObjectTagKey</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1521">S3C-1521</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>Object with public ACL cannot be deleted from a bucket that has an
+	ACL set to public.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1418">S3C-1418</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Backbeat</p>
+      </td>
+      <td>
+	<p>Backbeat&#39;s `LifecycleTask` class uses the `listObjectVersions`
+	AWS node SDK method to get a list of versions and delete markers, which
+	are returned in discrete arrays sorted first by `Key` and next by
+	`LastModified` time. When these two arrays are merged with a null
+	version ID (created when versioning suspended buckets), the
+	`LastModified` time between the null version and its parent or child
+	version may match, in which case Backbeat cannot determine the newer
+	version.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1140">S3C-1140</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>Tags do not support Unicode characters.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31552">RING-31552</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>sprov</p>
+      </td>
+      <td>
+	<p>The cos translator post process script backtraces with unexpected arguments.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31521">RING-31521</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>geosync</p>
+      </td>
+      <td>
+	<p>File reconstruction does not update the created_entries and
+	removed_entries sfullsync statistics.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31515">RING-31515</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>geosync</p>
+      </td>
+      <td>
+	<p>When using the subcommand diff or reconstruct on a file, softlink is
+	detected as a regular file (softlinks are detected correctly when the
+	tool is put to use on a folder).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30451">RING-30451</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>installer</p>
+      </td>
+      <td>
+	<p>SVSD default pillar adds unnecessary entry during configuration
+	(problem only occurs on CDMI connectors).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-19812">RING-19812</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>sprov</p>
+      </td>
+      <td>
+	<p>The &ndash;server-hostnames argument does not generate the provided
+	host names in the output JSON and ringsh.txt files.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Fixes and Enhancements</h2>
+
+<p>Fixes/Enhancements in RING 8.0.0.0/S3C 7.5.0.0</p>
+
+<p>Tickets listed in the table below address fixes and enhancements that have been made since the RING7, version 7.4.4.7 release.</p>
+
+<p>Fixed Issues/Enhancements in RING8 (sorted first by Severity, then by Ticket)</p>
+
+<table>
+  <col width="95">
+  <col width="auto">
+  <col width="auto">
+  <col width="auto">
+  <thead>
+    <tr>
+      <td>
+	<p>Ticket</p>
+      </td>
+      <td>
+	<p>Severity</p>
+      </td>
+      <td>
+	<p>Component</p>
+      </td>
+      <td>
+	<p>Ticket Description</p>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/MD-701">MD-701</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Metadata</p>
+      </td>
+      <td>
+	<p>repd (metadata storage daemons) processes can crash if corrupted
+	backups are detected or on failure to write backup chunks to the
+	RING.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/MD-697">MD-697</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Metadata, S3</p>
+      </td>
+      <td>
+	<p>Following a reboot of one or more servers, a situation can occur in
+	which raft sessions on follower nodes cannot make progress and bring
+	their raft logs in line with the leader&rsquo;s state.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/MD-696">MD-696</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Metadata</p>
+      </td>
+      <td>
+	<p>Susceptibility to metadata corruption. Increase metadata daemon
+	resiliency after a serious database issue is detected (e.g. corruption),
+	by switching to read-only mode and going to a special state until an
+	operator manually fixes the database and restarts the daemon.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31534">RING-31534</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>halo</p>
+      </td>
+      <td>
+	<p>In the case of upgrade, the scality-halod package fails to install
+	due to a missing directory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31506">RING-31506</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>nasdk</p>
+      </td>
+      <td>
+	<p>A race condition during ARC reconstruct can result in access failures
+	to a part misidentified as being hosted by 0.0.0.0:0.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31449">RING-31449</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>srebuildd</p>
+      </td>
+      <td>
+	<p>Srebuildd crashes when there are not enough chunks to rebuild an
+	object. The chunk deficiency is due to one or more chunks being
+	discarded as a result of errors in the computation of their CRC.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31415">RING-31415</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>supervisor</p>
+      </td>
+      <td>
+	<p>On Trusty, the Apache configuration for the supervisor contains a syntax error.</p>
+	<p><strong>Workaround:</strong> Edit this file manually to remove
+	backslashes in the `Content-Security-Policies` header setting.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31333">RING-31333</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>elasticsearch, supapi</p>
+      </td>
+      <td>
+	<p>The Elasticsearch pre-upgrade script uses an ES proxy that can be
+	buggy and thus block the upgrade operation.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31209">RING-31209</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>dewpoint</p>
+      </td>
+      <td>
+	<p>Creating version in the recycle-bin of connectors running geosync
+	that have undelete enabled can lead to crashes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30445">RING-30445</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>dewpoint, geosync, setup</p>
+      </td>
+      <td>
+	<p>The dewpoint-sofs.js config files can be silently archived as
+	dewpoint-sofs.js-0, -1, -2, etc. and replaced with similar files in
+	which journaling is not enabled. When this issue occurs, all seems to be
+	in normal working order from the user&rsquo;s perspective, and nothing
+	is broken, but journal entries are no longer written (and are therefore
+	not replicated). The geosync feature does not immediately stop as it is
+	still playing the backlog of journal entries and file transfers, however
+	at some point it will catch up and subsequently stall.</p>
+	<p><strong>Workaround:</strong> Each time an action is performed on
+	dewpoint connectors or after a connector upgrade, check that the
+	/etc/dewpoint* files (dewpoint-sofs.js and dewpoint.js) are as
+	expected.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2321">S3C-2321</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>Backbeat and CRR do not deploy correctly on a 3-node RING, due to a
+	configuration issue.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2291">S3C-2291</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>Component upgrade to the latest LTS of Node.js</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2244">S3C-2244</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>Usage metrics are not shown on S3 Console when the UTAPI component is
+	configured with a custom listening port.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2129">S3C-2129</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>bucketclient, Metadata</p>
+      </td>
+      <td>
+	<p>Upgrade Metadata to the latest Node.js LTS.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1849">S3C-1849</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>When upgrading stateless components from S3 Connector v. 7.2 to
+	v. 7.4 with a populated bucket, S3 issues a "can't parse json from
+	metadata" error.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1366">S3C-1366</a></p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>IAM GUI, Identisee, Metadata, vaultclient</p>
+      </td>
+      <td>
+	<p>Deleting an account using either Identisee or vaultclient deletes the account, but buckets may remain.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31529">RING-31529</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>nasdk</p>
+      </td>
+      <td>
+	<p>Concurrent reads on a non-existing object can return an error rather
+	than indicating that the object does not exist.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30989">RING-30989</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>Node proxies are fired in parallel.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30548">RING-30548</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>sfused</p>
+      </td>
+      <td>
+	<p>When accessing files in a case-insensitive directory that use more
+	than one name, we fail to invalidate some names from the caches for
+	directory entries in the connector and in the kernel.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30409">RING-30409</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>installer, preinstall</p>
+      </td>
+      <td>
+	<p>The sysctl net.core.somaxconn setting is left unset by the installer
+	(should be set to 4096).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-29431">RING-29431</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>nasdk</p>
+      </td>
+      <td>
+	<p>Connectors can now require a custom number of successful parts to be
+	written to consider the overall operation as a success for immutable
+	objects and object creations. This is driven by configuration and can be
+	overloaded through sproxyd request headers.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26707">RING-26707</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>supervisor, supgui</p>
+      </td>
+      <td>
+	<p>The Supervisor cannot be accessed from Safari.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2329">S3C-2329</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Federation, S3</p>
+      </td>
+      <td>
+	<p>The scality-frontend-scheduler container incorrectly logs to
+	/var/log/messages.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2287">S3C-2287</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Federation, S3</p>
+      </td>
+      <td>
+	<p>The Docker bridge interface restarts by default on IP addresses
+	reserved by the customer, thus deactivating the Docker systemd unit and
+	breaking IPv4 connectivity.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2228">S3C-2228</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Vault</p>
+      </td>
+      <td>
+	<p>Changes in Federation from 6.x to 7.x caused the migration script to
+	become unusable.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2216">S3C-2216</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>Documentation, S3</p>
+      </td>
+      <td>
+	<p>Increase the limit of user defined tags on objects from 10 to 50 to
+	match AWS S3 specification.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2073">S3C-2073</a></p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>S3</p>
+      </td>
+      <td>
+	<p>A GET bucket request to S3 server that contains more than one
+	"prefix=" or more than one "marker=" query parameter crashes the repd
+	process answering the request.</p>
+	<p>Fix Applied: Take the first "prefix=" or "query=" parameter, if
+	multiple ones are passed in the query string.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31535">RING-31535</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>halo</p>
+      </td>
+      <td>
+	<p>The package upgrade process fails to call the configuration migration
+	script.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31503">RING-31503</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>supervisor, supgui</p>
+      </td>
+      <td>
+	<p>At times the Supervisor UI displays *No data available* in the S3
+	monitoring section&rsquo;s Service List table due to a search interval
+	that is too tight.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31351">RING-31351</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>nfs, sfused</p>
+      </td>
+      <td>
+	<p>In some cases of connector misconfiguration, where the configuration
+	is missing an ino mode used by another connector, the NFS server can end
+	up showing truncated output when listing a directory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31175">RING-31175</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>tracer</p>
+      </td>
+      <td>
+	<p>Logstash cannot read tracer logs.</p>
+	<p>Fix Applied: The permissions for tracer and event log files are now
+	set to 0644.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31097">RING-31097</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>elasticsearch, setup</p>
+      </td>
+      <td>
+	<p>As the systemctl command does not exist, deleting Elasticsearch v2
+	cluster on CentOS 6 and Ubuntu Trusty using the deleting_es2.sh script
+	outputs an error when attempting to reload the daemon system.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31094">RING-31094</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>When a physdelete fails, an assert is fired due to mishandling of
+	stats.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-31071">RING-31071</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizstoresup, node</p>
+      </td>
+      <td>
+	<p>The size of the "status" update from the supervisor is reduced
+	through the removal of unused data from payload.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30994">RING-30994</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>nasdk</p>
+      </td>
+      <td>
+	<p>Introduction of a rate limiter for chord operations in number of
+	simultaneous parallel operations per destination node. The thresholds
+	are defined by the newly added parameters to the chord RING driver,
+	rate_limit_nominal and rate_limit_overloaded.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30620">RING-30620</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>nfs-ganesha</p>
+      </td>
+      <td>
+	<p>Support and enforce POSIX ACL is now stored on files and directories
+	through protocols other than NFS.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-30400">RING-30400</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>nasdk</p>
+      </td>
+      <td>
+	<p>nasdk tools scalringget and scalringdel do not verify keys' size.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-29897">RING-29897</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>packaging</p>
+      </td>
+      <td>
+	<p>Upon upgrade of the packages, an automatic backup will be performed
+	before and after the upgrade.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-28354">RING-28354</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>supervisor, supgui</p>
+      </td>
+      <td>
+	<p>Scality platforms can now be named via the
+	`/api/v0.1/infra_metadata/` route on the supervisor machine.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-28218">RING-28218</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>Removal of deprecated chunkapinodehtsize parameter
+	(bizstorenode/chunkapi).</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-28097">RING-28097</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>Purge queue is using a lot of memory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-27329">RING-27329</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizio, bizstoresup, common libs, diskmgt, halo, installer, node,
+	ringsh, rs2, sagentd, sflushd, sfused, sindex, sophiad, sproxyd,
+	srebuildd, supv2, svsd</p>
+      </td>
+      <td>
+	<p>All RING daemons (including nodes, connectors, supervisor, ...) run
+	now as a regular user, not root.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26630">RING-26630</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>ringsh</p>
+      </td>
+      <td>
+	<p>The ringsh node diskConfigSet command does not display its
+	intent.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26437">RING-26437</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>The internal command "chunkapi store close" can lead to a crash and
+	should not be exposed externally.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25911">RING-25911</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>ov_core</p>
+      </td>
+      <td>
+	<p>In ringsh, dumpClusterStats (supervisor module) and dumpStatsDelta
+	(supervisor / node / accessor modules) have been removed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25725">RING-25725</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>ov_core, ringsh</p>
+      </td>
+      <td>
+	<p>Remove a deprecated, previous implementation of list Keys that used
+	file on local servers.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25638">RING-25638</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>Improved accuracy of number of items impacted by a given balance
+	task.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-24775">RING-24775</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>bizio</p>
+      </td>
+      <td>
+	<p>Log messages for biziods use a generic "dso" reference to designate
+	where a logged event occurs, rather than referring to a specific RING by
+	name. This can be confusing in multi-RING setups.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-21257">RING-21257</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>dewpoint</p>
+      </td>
+      <td>
+	<p>Remove the obsolete scality-mod_dewpoint module.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-16026">RING-16026</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>node, ov_core</p>
+      </td>
+      <td>
+	<p>New metric: Each chord command now tracks average elapsed time in
+	ms.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2229">S3C-2229</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>Documentation, Federation</p>
+      </td>
+      <td>
+	<p>Upgrade requires that the cleanup-previous role be run manually, as
+	run.yml with '-t stateful' and '-t stateless does not call the role.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-2155">S3C-2155</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>utapi</p>
+      </td>
+      <td>
+	<p>The time range validation performed by the UTAPI server can lead to
+	the start time being greater than the end time.</p>
+	<ol>
+	  <li>When providing a time range where the start is greater than the
+	  end, an inaccurate error message was returned.
+	  </li>
+	  <li>When the end time was omitted and the start time is in the future,
+	  request response includes a time range where the start time is greater
+	  than the end time.
+	  </li>
+	</ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/S3C-1506">S3C-1506</a></p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>IAM GUI, Identisee, S3Console, utapi</p>
+      </td>
+      <td>
+	<p>Long-range requests (i.e. &gt;= 1 year) cause the v8 managed heap to
+	run out of memory due to the high number of actions required to perform
+	metrics computation.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26325">RING-26325</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>ov_core</p>
+      </td>
+      <td>
+	<p>chord.log should display when an error occurs on received requests,
+	including command and origin.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-26265">RING-26265</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>ov_core</p>
+      </td>
+      <td>
+	<p>Logs added for the use of Technical Services, partners, and
+	customers, including:</p>
+	<ul>
+	  <li>a new logsent for httpclient </li>
+	  <li>a new log line at the end of the request, with destination
+	  (ip/uri), return code, size (if available), payload
+	  request/response. The loglevel is VERBOSE if the return code is good,
+	  WARN otherwise </li>
+	</ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p><a target="_blank" href="https://scality.atlassian.net/browse/RING-25842">RING-25842</a></p>
+      </td>
+      <td>
+	<p>Minor</p>
+      </td>
+      <td>
+	<p>ov_core</p>
+      </td>
+      <td>
+	<p>The port of the node used by sagentd is listening on all network
+	interfaces, it could be limited to local communication only.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!--</body>
+  </html>
+-->
