@@ -3,8 +3,9 @@ from collections import namedtuple
 from .constants import PRODUCT_TO_NAME, PRODUCT_TO_CANONICAL, PRODUCT_DOC_NAME
 from .search import do_search
 from .assets import discover_images
+from datetime import date
 
-Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_dashboard'])
+Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_dashboard', 'timestamp'])
 
 Issues = namedtuple('Issues', ['known', 'fixed', 'new_features', 'improvements'])
 
@@ -36,4 +37,5 @@ def build_context(product, version, dashboard=False):
         issues = build_issues(product, version),
         images = build_images(),
         is_dashboard=dashboard,
+        date=date.today().strftime('%B %d, %Y')
     )
