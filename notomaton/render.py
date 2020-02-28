@@ -30,8 +30,12 @@ def _render_html(book, ctx):
     return book.render(ctx)
 
 def _render_pdf(book, ctx):
+    pdf_opts = {
+        'footer-right': '[page]/[toPage]',
+        'footer-line': ''
+    }
     rendered_html = _render_html(book, ctx)
-    return pdfkit.from_string(rendered_html, False)
+    return pdfkit.from_string(rendered_html, False, toc={}, options=pdf_opts, cover_first=True)
 
 _MODES = { 'html': _render_html, 'pdf': _render_pdf }
 def render_book(book, ctx, mode='html'):
