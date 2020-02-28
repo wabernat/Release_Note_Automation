@@ -5,3 +5,5 @@
 .DS_Store
 
 deploy.env
+build/
+dist/
