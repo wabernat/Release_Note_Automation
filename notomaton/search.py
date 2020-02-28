@@ -175,17 +175,12 @@ class ZenkoSearch(JiraSearch):
     def new_features(self):
         return list(self.__equ_version_filter(super().new_features))
 
-class S3CSearch(JiraSearch):
-    def __init__(self, version):
-        super().__init__(('s3c', 'md'), version)
-
 class RingSearch(JiraSearch):
     def __init__(self, version):
-        super().__init__('ring', version)
+        super().__init__(('ring', 's3c', 'md'), version)
 
 PRODUCT_TO_SEARCH = {
     Product.ZENKO: ZenkoSearch,
-    Product.S3C: S3CSearch,
     Product.RING: RingSearch
 }
 
