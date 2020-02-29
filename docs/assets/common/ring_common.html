@@ -1,9 +1,19 @@
-<div class="textbox">Scality RING 8 consists of two distinct components, the RING and the S3 Connector.
-Because these components are on separate development paths, each RING 8 release may embed version
-increments of each that differ. The initial release of RING 8, for example, comprised RING v8.0.0.0 and
-  S3 Connector v7.5.0.0.</div>
-<h2>RING8 Product Organization</h2>
-<h3>Scality RING Core, Installation, Supervision and Monitoring</h3>
+<div class="textbox">Scality RING 8 consists of two distinct components, the
+RING and the S3 Connector.  Because these components are on separate development
+paths, each RING 8 release may embed version increments of each that differ. The
+initial release of RING 8, for example, comprised RING v8.0.0.0 and S3 Connector
+v7.5.0.0.</div>
+<h2>RING 8 Product Organization</h2>
+<p> RING 8 encompasses:</p>
+<ul>
+  <li><a href="#core-etc"></li>
+  <li><a href="#connectors"></li>
+  <li><a href="#sofs"></li>
+  <li><a href="#email"></li>
+  </ul>
+
+<h3 id="core-etc">Scality RING Core, Installation, Supervision and Monitoring</h3>
+<p>This includes:</p>
 <ul>
   <li>All core RING features, including the full scale-out architecture,
     self-healing, flexible data protection policies with replication and
@@ -20,17 +30,15 @@ increments of each that differ. The initial release of RING 8, for example, comp
     deployments for file and object connectors.</li>
 </ul>
 
-<h3>Scality Object Connectors</h3>
+<h3 id="connectors">Scality Object Connectors</h3>
 <table class="hline">
-<tr><td>S3 Connector</td><td>Scality S3 Connector is compatible with AWS S3 and IAM security
-services. It can also be integrated with Microsoft Active Directory
-or other enterprise directory software that supports the SAML
-protocol.</td></tr>
+<tr><td>S3 Connector</td><td>Scality S3 Connector is compatible with AWS S3 and
+IAM security services. It can also be integrated with Microsoft Active Directory
+or other enterprise directory software that supports the SAML protocol.</td></tr>
 <tr><td>Native REST connector</td><td>Sproxyd is Scality’s native REST API connector</td></tr>
 </table>
 
-<h3>Scality SOFS (Scale-Out Filesystem) Connector Options</h3>
-
+<h3 id="sofs">Scality SOFS (Scale-Out Filesystem) Connector Options</h3>
 <table class = "hline">
 <tr><td>FUSE (sfused) connector</td><td>Local Linux host file system access to RING storage services.</td></tr>
 <tr><td>NFSv3 connector</td><td>Standard NFSv3 network file protocol mountpoint access to RING
@@ -45,7 +53,7 @@ RING storage services.</td></tr>
 authentication support for NFSv3 and SMB 2.0/3.0 connectors.</td></tr>
 </table>
 
-<h3>Email/Messaging Connectors</h3>
+<h3 id="email">Email/Messaging Connectors</h3>
 <table class = "hline">
   <tr><td>Zimbra 8.0.3 and later, and X</td><td>For support of the Zimbra
       Collaboration solution version 8 (http://www.zimbra.com/) over the Scality

@@ -1,0 +1,164 @@
+<!--<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body> -->
+<h1>RING 8 Enhancement Details</h1>
+
+<p>RING 8 introduces enhancements to Scality’s software-defined RING storage
+  solution, both for the RING product and the S3 Connector.</p>
+
+<h2>RING Version 8.0.0</h2>
+
+<h3>Distributed Lock Manager</h3>
+
+The Distributed Lock Manager (DLM) is a lock service for processes distributed across the network that
+enables the coordination of multiple SOFS connectors over the same SOFS volume. With this new RING
+feature, particular focus has been placed on:
+<ul>
+  <li>Improving infrastructure robustness to provide better recovery support</li>
+  <li>Making it possible to deploy DLM-enabled connectors across multiple sites. </li>
+  <li>Relying on a full userland implementation and removing kernel module dependencies.</li>
+
+  <h3>New NFS Connector</h3>
+  <p>RING 8 offers a new NFS connector based on the open-source Ganesha file
+  server. The connector supports:</p>
+  <li> NFSv4 protocol
+    <ul>
+      <li>Export management (NFSv4 Pseudo File System provides maximum
+	flexibility. Exports Pathname on servers can be changed transparently to
+	clients)
+      </li>
+      <li>Locking and State (in NFSv4, locking operations are part of the
+	protocol and NFSv4 servers keep track of open files)</li>
+      <li>Security (the NFSv4 protocol improves security over previous NFS
+	versions)</li>
+    </ul>
+  </li>
+  <li>IPV6 support from the connector side</br>
+    Applications can now directly connect to a RING NFS connector using
+    IPv6. (Note that the underlying RING nodes still run IPv4.)</li>
+  <li>Kerberos authentication</br>
+    The new NFS connector can be used with Kerberos to manage user
+    authentication and application access. Kerberos provides strong cryptography
+    and third-party ticket authorization.
+  </li>
+  <li>POSIX ACL</br>
+    POSIX ACL is now stored on files and directories, whereas another protocol
+    is required to set POSIX ACL.</li>
+</ul>
+<h3>Non-Root Execution</h3>
+<p>Starting with the RING 8 release, RING components run under a non-root
+user. This change affects the following processes: biziod, bizstorenode,
+bizstoresup, supv2, sagentd, scloned, sfused, sindexd, sproxyd, srebuildd,
+dewpoint, scaldisk, sophiad, sflushd and RS2/bizstore. (SVSD still runs as root,
+and S3 connector processes remain unchanged.)</p>
+
+<p>Both new installation and upgrade are taken into account transparently.</p>
+<ul>
+  <li>Packaging scripts continue to ensure that the local “scality” user exists, to adapt the current
+    solution to legacy RING platforms that lacked this user.</li>
+  <li>Startup scripts typically ensure that the scality user exists.</li>
+</ul>
+<p>File hierarchy changes:</p>
+<ul><li>Scality `configuration files that were previously stored /etc are now present in /etc/scality. For
+detailed information, refer to the Scality RING 8 Operations Guide.</li>
+<li>Post-install scripts and startup scripts have been updated to take the changes into account. For
+an overview of specific package changes, refer to the package notes in the Component Details
+section of the RING 8 Operations documentation.
+<li>Ownership:
+  <ul>
+    <li>The “scality” user now owns the /var/log/scality directory.</li>
+    <li>The “scality” user now owns the /var/run/scality and /run/scality directories.</li>
+  </ul>
+</li>
+</ul>
+<p>Impact on production:</p>
+<ul>
+  <li>The root user can no longer manually stop processes; scripts are required to stop services.</li>
+  <li>As the root user is no longer used for disk writes, verify that the reserved block count, as
+    reported by tun2fs -l {{device}} is zero for all Scality partitions.</li>
+  <li>Custom scripts must be updated to reflect the described configuration changes.</li>
+</ul>
+
+<h2>S3 Connector Version 7.5.0</h2>
+
+<h3>KMIP for KMS</h3>
+
+<p>Scality's support for the OASIS Key Management Interoperability Protocol
+(KMIP) standard allows users to interact with their key management systems (KMS)
+utilizing the fully open standard protocol -- in contrast to proprietary
+alternatives. The KMIP protocol version 1.2 (and later) allows for streamlined
+data encryption by simplifying encryption key management. The KMIP driver is
+vendor agnostic and supports all KMIT appliances with Basic Encryption Profile
+support out of the box.</p>
+
+<h3>S3 Quotas</h3>
+
+<p>The S3 Quotas feature allows users to administer account-level quotas on their S3 storage space. This
+feature enhances the flexibility of storage system space management by allowing multiple users or
+business entities to use the same storage platform without over consuming space. Simply specify the
+amount of space to be allocated to an account, and then just allow each account to use storage
+resources as needed without fear of user over-consumption.</p>
+
+<h3>eXtended Data Management (XDM)</h3>
+
+<p>XDM is a modular configuration that enables RING customers to use advanced cloud features to
+  maintain their object stores. Among these are:</p>
+<ul>
+  <li><a href="#metadata">Metadata Search</a></li>
+  <li><a href="#transition">Lifecycle Transition</a></li>
+  <li><a href="#expiration">Lifecycle Expiration</a></li>
+  <li><a href="#crr">Cross-Region Replication (CRR) to the Cloud</a></li>
+  <li><a href="#oob">Out-of-Band Updates</a></li>
+  </ul>
+<p>XDM ingests metadata from RING object stores to maintain an independent namespace of the RING.
+  Using this metadata, it can implement these features with high availability and reliability.</p>
+
+<h4 id="metadata">Metadata Search</h4>
+  <p>XDM’s Metadata Search feature allows users to object metadata to perform
+    powerful searches on objects and easily find the data they need, when they
+    need it. Metadata search uses the metadata natively created by production
+    systems by leveraging Scality's object storage model to inscribe metadata to
+    objects and create a searchable, manageable namespace for stored
+    objects. The feature relies on a SQL-like syntax to drive a MongoDB search
+    and locate important object information like replication statuses, cloud
+    replication destinations, metadata headers, tags, and more.</p>
+
+  <h4 id="transition">Lifecycle Transition</h4>
+  <p>Lifecycle Transition Policies allows users to control their data movement
+    through implemented policies. Users create a transition policy, put it in
+    place and wait for the policy to enact. Users can control where their data
+    moves, and when it happens -- no manual data transition is needed. Users can
+    decide to transition all data within a bucket or transition objects that
+    have been specifically tagged. Transition Policies supports data transitions
+    for the following clouds: Scality RING, AWS S3, Azure, Google Cloud
+    Platform, and Ceph.</p>
+  <h4 id="expiration">Lifecycle Expiration</h4>
+  <p>Object lifecycle expiration policies enable users to delete objects or
+    object types based on age.</p>
+  <h4 id="crr">Cross-Region Replication (CRR) to the Cloud</h4>
+  <p>Cross-Region Replication (CRR) is a bucket-level configuration that
+    enables automatic, asynchronous copying of objects across buckets in
+    different clouds -- be it private or public cloud. CRR provides users with
+    enhanced data flexibility. It offers greater control over data redundancy by
+    replicating to multiple locations; it improves data availability by offering
+    multiple copies for high availability, backup, and data migration; and it
+    mitigates the costs and lock-in typical of public clouds. CRR is currently
+    supported for Scality RING, AWS S3, Azure, Google Cloud Platform, and Ceph.</p>
+    
+  <h4 id="oob">Out-of-Band Updates</h4>
+  <p>RING 8 with XDM allows ingestion and out-of-band (OOB) updates from S3
+    Connector and NFS mount points. Out-of-band updates do not copy object data;
+    rather, object data attributes are copied over to XDM for data management
+    purposes. Using this information, XDM can act on NFS and S3 Connector mounts
+    as it would any other type of bucket, thus enabling Metadata Search,
+    Lifecycle Transition, Lifecycle Expiration, and Cross-Region Replication to
+    the Cloud.</p>
+  <p>Out-of-band updates are available for Scality's RING with S3 Connector or
+    for RINGs using the Scale-Out File System (SOFS) targeting NFS-protocol
+    mount points. When each location is established, versioning must be
+    enabled. Out-of-band updates for S3C offers metrics; for NFS services, the
+    metrics feature remains under development.</p>
+<!--  </body>
+  </html> -->

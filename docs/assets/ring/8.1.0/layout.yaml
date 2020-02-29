@@ -16,6 +16,7 @@ layout:
   - common/body-start.html
   - common/ring_common.html
   - $templates/features.new
+  - common/ring_8.0.0_enhancements.html
   - common/supported_environs.html
   - common/documentation_links.html
   - common/issue_header.html
