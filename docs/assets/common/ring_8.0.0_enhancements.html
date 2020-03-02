@@ -1,9 +1,9 @@
 <!--<html>
   <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body> -->
-<h1>RING 8 Enhancement Details</h1>
+<h1>RING 8 Enhancements</h1>
 
 <p>RING 8 introduces enhancements to Scality’s software-defined RING storage
   solution, both for the RING product and the S3 Connector.</p>
@@ -12,41 +12,42 @@
 
 <h3>Distributed Lock Manager</h3>
 
-The Distributed Lock Manager (DLM) is a lock service for processes distributed across the network that
+<p>The Distributed Lock Manager (DLM) is a lock service for processes distributed across the network that
 enables the coordination of multiple SOFS connectors over the same SOFS volume. With this new RING
 feature, particular focus has been placed on:
 <ul>
   <li>Improving infrastructure robustness to provide better recovery support</li>
   <li>Making it possible to deploy DLM-enabled connectors across multiple sites. </li>
   <li>Relying on a full userland implementation and removing kernel module dependencies.</li>
-
-  <h3>New NFS Connector</h3>
-  <p>RING 8 offers a new NFS connector based on the open-source Ganesha file
-  server. The connector supports:</p>
-  <li> NFSv4 protocol
-    <ul>
-      <li>Export management (NFSv4 Pseudo File System provides maximum
-	flexibility. Exports Pathname on servers can be changed transparently to
-	clients)
-      </li>
-      <li>Locking and State (in NFSv4, locking operations are part of the
-	protocol and NFSv4 servers keep track of open files)</li>
-      <li>Security (the NFSv4 protocol improves security over previous NFS
-	versions)</li>
-    </ul>
-  </li>
-  <li>IPV6 support from the connector side</br>
-    Applications can now directly connect to a RING NFS connector using
-    IPv6. (Note that the underlying RING nodes still run IPv4.)</li>
-  <li>Kerberos authentication</br>
-    The new NFS connector can be used with Kerberos to manage user
-    authentication and application access. Kerberos provides strong cryptography
-    and third-party ticket authorization.
-  </li>
-  <li>POSIX ACL</br>
-    POSIX ACL is now stored on files and directories, whereas another protocol
-    is required to set POSIX ACL.</li>
 </ul>
+</p>
+<h3>New NFS Connector</h3>
+    <p>RING 8 offers a new NFS connector based on the open-source Ganesha file
+      server. The connector supports:
+      <ul>
+	<li> NFSv4 protocol
+	  <ul>
+	    <li>Export management (NFSv4 Pseudo File System provides maximum
+	      flexibility. Exports Pathname on servers can be changed
+	      transparently to clients)</li>
+	    <li>Locking and State (in NFSv4, locking operations are part of the
+	      protocol and NFSv4 servers keep track of open files)</li>
+            <li>Security (the NFSv4 protocol improves security over previous NFS
+              versions)</li>
+	  </ul>
+	</li>
+	<li><p>IPV6 support from the connector side</p>
+	  <p>Applications can now directly connect to a RING NFS connector using
+	  IPv6. (Note that the underlying RING nodes still run IPv4.)</p></li>
+	<li><p>Kerberos authentication</p>
+	  <p>The new NFS connector can be used with Kerberos to manage user
+	  authentication and application access. Kerberos provides strong
+	  cryptography and third-party ticket authorization.</p></li>
+  <li><p>POSIX ACL</p>
+    <p>POSIX ACL is now stored on files and directories, whereas another protocol
+    is required to set POSIX ACL.<p></li>
+</ul>
+</p>
 <h3>Non-Root Execution</h3>
 <p>Starting with the RING 8 release, RING components run under a non-root
 user. This change affects the following processes: biziod, bizstorenode,
@@ -161,4 +162,5 @@ resources as needed without fear of user over-consumption.</p>
     enabled. Out-of-band updates for S3C offers metrics; for NFS services, the
     metrics feature remains under development.</p>
 <!--  </body>
-  </html> -->
+</html> 
+-->
