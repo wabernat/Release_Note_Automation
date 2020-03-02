@@ -1,10 +1,10 @@
 from .constants import Product, TicketType
 from .jira import get_jira
 from .util.log import Log
-from .util.ticket import parse_version
+from .util.ticket import parse_version, ring_to_s3c_version
 from .ticket import build_ticket
 
-from pprint import pprint
+import itertools
 
 _log = Log('search')
 
@@ -182,6 +182,24 @@ class S3CSearch(JiraSearch):
 class RingSearch(JiraSearch):
     def __init__(self, version):
         super().__init__('ring', version)
+        self._s3c_search = S3CSearch(ring_to_s3c_version(version))
+
+    @property
+    def fixed(self):
+        return itertools.chain(super().fixed, self._s3c_search.fixed)
+
+    @property
+    def known(self):
+        return itertools.chain(super().known, self._s3c_search.known)
+
+    @property
+    def new_features(self):
+        return itertools.chain(super().new_features, self._s3c_search.new_features)
+
+    @property
+    def improvements(self):
+        return itertools.chain(super().improvements, self._s3c_search.improvements)
+
 
 PRODUCT_TO_SEARCH = {
     Product.ZENKO: ZenkoSearch,
@@ -190,4 +208,5 @@ PRODUCT_TO_SEARCH = {
 }
 
 def do_search(product, version):
+    # RING release notes contain both RING and S3C, but with different versions
     return PRODUCT_TO_SEARCH[product](version)
