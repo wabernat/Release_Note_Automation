@@ -144,7 +144,7 @@
       <td>
 	<p>On Trusty, the Apache configuration for the supervisor contains a syntax error.</p>
 	<p><strong>Workaround:</strong> Edit this file manually to remove
-	backslashes in the `Content-Security-Policies` header setting.</p>
+	backslashes in the <code>Content-Security-Policies</code> header setting.</p>
       </td>
     </tr>
     <tr>
@@ -456,7 +456,7 @@
 	<p>A GET bucket request to S3 server that contains more than one
 	"prefix=" or more than one "marker=" query parameter crashes the repd
 	process answering the request.</p>
-	<p>Fix Applied: Take the first "prefix=" or "query=" parameter, if
+	<p><strong>Fix Applied:</strong> Take the first "prefix=" or "query=" parameter, if
 	multiple ones are passed in the query string.</p>
       </td>
     </tr>
@@ -519,7 +519,7 @@
       </td>
       <td>
 	<p>Logstash cannot read tracer logs.</p>
-	<p>Fix Applied: The permissions for tracer and event log files are now
+	<p><strong>Fix Applied:</strong> The permissions for tracer and event log files are now
 	set to 0644.</p>
       </td>
     </tr>
@@ -642,7 +642,7 @@
       </td>
       <td>
 	<p>Scality platforms can now be named via the
-	`/api/v0.1/infra_metadata/` route on the supervisor machine.</p>
+	<code>/api/v0.1/infra_metadata/</code> route on the supervisor machine.</p>
       </td>
     </tr>
     <tr>
