@@ -102,7 +102,7 @@ table thead {
 
 table.hline, table.hline * {
     border: none;
-    
+    margin-left: 1%;    
 }
 
 table.hline tr {
