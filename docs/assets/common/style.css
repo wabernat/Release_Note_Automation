@@ -1,4 +1,3 @@
-
 /*
  * Headings
  */
@@ -44,6 +43,9 @@ h6 {
     font-family: 'Oswald';
 }
 
+caption {
+    text-align: left;
+}
 /*
  * Body
 */
