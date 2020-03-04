@@ -1,20 +1,24 @@
-<!--<html>
+<!--
+<html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-  <body> -->
+  <body> 
+-->
+
 <h1>RING 8 Enhancements</h1>
 
 <p>RING 8 introduces enhancements to Scality’s software-defined RING storage
-  solution, both for the RING product and the S3 Connector.</p>
+  solution, for both the RING and the S3 Connector.</p>
 
 <h2>RING Version 8.0.0</h2>
 
 <h3>Distributed Lock Manager</h3>
 
-<p>The Distributed Lock Manager (DLM) is a lock service for processes distributed across the network that
-enables the coordination of multiple SOFS connectors over the same SOFS volume. With this new RING
-feature, particular focus has been placed on:
+<p>The Distributed Lock Manager (DLM) is a lock service for processes
+distributed across the network that enables the coordination of multiple SOFS
+connectors over the same SOFS volume. With this new RING feature, particular
+focus has been placed on:
 <ul>
   <li>Improving infrastructure robustness to provide better recovery support</li>
   <li>Making it possible to deploy DLM-enabled connectors across multiple sites. </li>
@@ -27,18 +31,18 @@ feature, particular focus has been placed on:
       <ul>
 	<li> NFSv4 protocol
 	  <ul>
-	    <li>Export management (NFSv4 Pseudo File System provides maximum
-	      flexibility. Exports Pathname on servers can be changed
-	      transparently to clients)</li>
+	    <li>Export management (NFSv4 pseudo-filesystem provides maximum
+	      flexibility. Export pathname on servers can be changed
+	      transparently to clients.)</li>
 	    <li>Locking and State (in NFSv4, locking operations are part of the
-	      protocol and NFSv4 servers keep track of open files)</li>
+	      protocol, and NFSv4 servers keep track of open files)</li>
             <li>Security (the NFSv4 protocol improves security over previous NFS
               versions)</li>
 	  </ul>
 	</li>
 	<li><p>IPV6 support from the connector side</p>
 	  <p>Applications can now directly connect to a RING NFS connector using
-	  IPv6. (Note that the underlying RING nodes still run IPv4.)</p></li>
+	  IPv6. (The underlying RING nodes still run IPv4.)</p></li>
 	<li><p>Kerberos authentication</p>
 	  <p>The new NFS connector can be used with Kerberos to manage user
 	  authentication and application access. Kerberos provides strong
@@ -60,25 +64,30 @@ and S3 connector processes remain unchanged.)</p>
   <li>Packaging scripts continue to ensure that the local “scality” user exists, to adapt the current
     solution to legacy RING platforms that lacked this user.</li>
   <li>Startup scripts typically ensure that the scality user exists.</li>
-</ul>
-<p>File hierarchy changes:</p>
-<ul><li>Scality `configuration files that were previously stored /etc are now present in /etc/scality. For
-detailed information, refer to the Scality RING 8 Operations Guide.</li>
-<li>Post-install scripts and startup scripts have been updated to take the changes into account. For
-an overview of specific package changes, refer to the package notes in the Component Details
-section of the RING 8 Operations documentation.
-<li>Ownership:
-  <ul>
-    <li>The “scality” user now owns the /var/log/scality directory.</li>
-    <li>The “scality” user now owns the /var/run/scality and /run/scality directories.</li>
   </ul>
-</li>
-</ul>
+<p>File hierarchy changes:</p>
+  <ul>
+    <li>Scality configuration files that were previously stored in /etc are now
+	present in /etc/scality. For detailed information, refer
+	to <i><a href="https://documentation.scality.com/RING/8.0.0/operation/index.html">RING
+	Operation</a></i>.</li>
+    <li>Post-install scripts and startup scripts have been updated to take
+        package changes into account.<!-- For an overview of specific package
+        changes, refer to the package notes in the "Component Details" section
+        of <i><a href="https://documentation.scality.com/RING/8.0.0/operation/index.html">RING
+        Operation</a></i>.--></li>
+    <li>Ownership:
+      <ul>
+        <li>The “scality” user now owns the /var/log/scality directory.</li>
+        <li>The “scality” user now owns the /var/run/scality and /run/scality directories.</li>
+      </ul>
+    </li>
+  </ul>
 <p>Impact on production:</p>
 <ul>
   <li>The root user can no longer manually stop processes; scripts are required to stop services.</li>
   <li>As the root user is no longer used for disk writes, verify that the reserved block count, as
-    reported by tun2fs -l {{device}} is zero for all Scality partitions.</li>
+    reported by <code>tun2fs -l {{device}}</code> is zero for all Scality partitions.</li>
   <li>Custom scripts must be updated to reflect the described configuration changes.</li>
 </ul>
 
@@ -86,21 +95,21 @@ section of the RING 8 Operations documentation.
 
 <h3>KMIP for KMS</h3>
 
-<p>Scality's support for the OASIS Key Management Interoperability Protocol
+<p>Scality&#39;s support for the OASIS Key Management Interoperability Protocol
 (KMIP) standard allows users to interact with their key management systems (KMS)
-utilizing the fully open standard protocol -- in contrast to proprietary
+using the fully open standard protocol&mdash;in contrast to proprietary
 alternatives. The KMIP protocol version 1.2 (and later) allows for streamlined
 data encryption by simplifying encryption key management. The KMIP driver is
-vendor agnostic and supports all KMIT appliances with Basic Encryption Profile
+vendor agnostic and supports all KMIP appliances with Basic Encryption Profile
 support out of the box.</p>
 
 <h3>S3 Quotas</h3>
 
 <p>The S3 Quotas feature allows users to administer account-level quotas on their S3 storage space. This
 feature enhances the flexibility of storage system space management by allowing multiple users or
-business entities to use the same storage platform without over consuming space. Simply specify the
+business entities to use the same storage platform without overconsuming space. Simply specify the
 amount of space to be allocated to an account, and then just allow each account to use storage
-resources as needed without fear of user over-consumption.</p>
+resources as needed without fear of user overconsumption.</p>
 
 <h3>eXtended Data Management (XDM)</h3>
 
@@ -113,11 +122,12 @@ resources as needed without fear of user over-consumption.</p>
   <li><a href="#crr">Cross-Region Replication (CRR) to the Cloud</a></li>
   <li><a href="#oob">Out-of-Band Updates</a></li>
   </ul>
-<p>XDM ingests metadata from RING object stores to maintain an independent namespace of the RING.
-  Using this metadata, it can implement these features with high availability and reliability.</p>
+<p>XDM ingests metadata from RING object stores to maintain an independent RING
+  namespace. Using this metadata, it can implement these features with high
+  availability and reliability.</p>
 
 <h4 id="metadata">Metadata Search</h4>
-  <p>XDM’s Metadata Search feature allows users to object metadata to perform
+  <p>XDM’s Metadata Search feature allows users to employ object metadata to perform
     powerful searches on objects and easily find the data they need, when they
     need it. Metadata search uses the metadata natively created by production
     systems by leveraging Scality's object storage model to inscribe metadata to
@@ -130,23 +140,24 @@ resources as needed without fear of user over-consumption.</p>
   <p>Lifecycle Transition Policies allows users to control their data movement
     through implemented policies. Users create a transition policy, put it in
     place and wait for the policy to enact. Users can control where their data
-    moves, and when it happens -- no manual data transition is needed. Users can
-    decide to transition all data within a bucket or transition objects that
-    have been specifically tagged. Transition Policies supports data transitions
-    for the following clouds: Scality RING, AWS S3, Azure, Google Cloud
-    Platform, and Ceph.</p>
+    moves, and when it happens&mdash;no manual data transition is needed. Users
+    can transition all data within a bucket or transition objects that have been
+    specifically tagged. Transition Policies supports data transitions for the
+    following clouds: Scality RING, AWS S3, Azure, Google Cloud Platform, and
+    Ceph.</p>
   <h4 id="expiration">Lifecycle Expiration</h4>
   <p>Object lifecycle expiration policies enable users to delete objects or
     object types based on age.</p>
   <h4 id="crr">Cross-Region Replication (CRR) to the Cloud</h4>
-  <p>Cross-Region Replication (CRR) is a bucket-level configuration that
-    enables automatic, asynchronous copying of objects across buckets in
-    different clouds -- be it private or public cloud. CRR provides users with
+  <p>Cross-Region Replication (CRR) is a bucket-level configuration that enables
+    automatic, asynchronous copying of objects across buckets in different
+    clouds&mdash;whether they are private or public. CRR provides users with
     enhanced data flexibility. It offers greater control over data redundancy by
     replicating to multiple locations; it improves data availability by offering
     multiple copies for high availability, backup, and data migration; and it
     mitigates the costs and lock-in typical of public clouds. CRR is currently
-    supported for Scality RING, AWS S3, Azure, Google Cloud Platform, and Ceph.</p>
+    supported for Scality RING, AWS S3, Azure, Google Cloud Platform, and
+    Ceph.</p>
     
   <h4 id="oob">Out-of-Band Updates</h4>
   <p>RING 8 with XDM allows ingestion and out-of-band (OOB) updates from S3

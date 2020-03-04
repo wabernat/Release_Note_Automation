@@ -1,4 +1,3 @@
-
 /*
  * Headings
  */
@@ -44,6 +43,9 @@ h6 {
     font-family: 'Oswald';
 }
 
+caption {
+    text-align: left;
+}
 /*
  * Body
 */
@@ -97,23 +99,37 @@ table thead {
     background-color: #eaeaea;
     font-weight: bold;
 }
+/*
+table.hline definition
+*/
 
-table.hline, table.hline * {
+table.hline {
     border: none;
-    
+    margin-left: 1%;    
 }
 
 table.hline tr {
     border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+}
+
+table.hline tr:first-child {
+    border-top: none;
 }
 
 table.hline tr:last-child {
     border-bottom: none;
 }
 
+table.hline td {
+    border: none;
+}
+
 /*
  * Links
  */
+
 a:visited {
 color: #ff9b3b;
 text-decoration: none;
