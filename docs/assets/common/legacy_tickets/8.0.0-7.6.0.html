@@ -288,6 +288,7 @@
       </td>
       <td>
 	<p>Deleting an account using either Identisee or vaultclient deletes the account, but buckets may remain.</p>
+	<p><strong>Workaround:</strong> Delete all associated buckets before deleting an account.</p>
       </td>
     </tr>
     <tr>
@@ -823,7 +824,7 @@
       </td>
       <td>
 	<p>Upgrade requires that the cleanup-previous role be run manually, as
-	run.yml with '-t stateful' and '-t stateless does not call the role.</p>
+	run.yml with <code>-t stateful</code> and <code>-t stateless</code> does not call the role.</p>
       </td>
     </tr>
     <tr>
