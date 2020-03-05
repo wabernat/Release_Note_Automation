@@ -216,4 +216,4 @@ PRODUCT_TO_SEARCH = {
 }
 
 def do_search(product, version):
-    return PRODUCT_TO_SEARCH[product](version)
+    return PRODUCT_TO_SEARCH[product](version[:5])
