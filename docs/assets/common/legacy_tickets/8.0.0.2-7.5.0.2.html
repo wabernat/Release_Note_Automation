@@ -1,0 +1,267 @@
+<!--<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>-->
+
+<h3>Fixes/Enhancements in RING 8.0.0.2/S3C 7.5.0.2</h3>
+
+  <p>Tickets listed in the following table were fixed or enhanced since RING
+  version 8.0.0.1.</p>
+
+<table>
+  <caption>Issues Fixed or Enhanced in RING 8.0.0.2/S3 Connector 7.5.0.2</caption>
+  <thead>
+  <col width="95">
+  <col width="auto">
+  <col width="auto">
+  <col width="auto">
+    <tr>
+      <td>
+	<p>Ticket</p>
+      </td>
+      <td>
+	<p>Severity</p>
+      </td>
+      <td>
+	<p>Component</p>
+      </td>
+      <td>
+	<p>Ticket Description</p>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+	<p>RING-32028</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>installer, setup, supervisor</p>
+      </td>
+      <td>
+	<p>Automatic installation can fail if a package is installed while the
+	internal repository on the Supervisor is not ready yet.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-32026</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>dewpoint</p>
+      </td>
+      <td>
+	<p>When a connection to dewpoint is reused and it does not end through a
+	request header, some memory can be leaked.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-32021</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>downsampling, sagentd, supervisor</p>
+      </td>
+      <td>
+	<p>On platforms with a lot of nodes and many node statuses flipping, the
+	`scality-status-ov-archive` Elasticsearch index can grow big with only
+	one shard and then becomes unusable while destabilizing the whole
+	Elasticsearch cluster.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-32017</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>dewpoint, sfused</p>
+      </td>
+      <td>
+	<p>When some bstraplist entries are invalid and do not fail quickly
+	connection attempts, NASDK connectors startup can take some time.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31669</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>A disk in error can prevent a node from working, which thus requires
+	the restarting of the particular node.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31436</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>node</p>
+      </td>
+      <td>
+	<p>At times, a node will not browse a disk added/reloaded after launch
+	if the first access to that particular disk has failed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>S3C-2526</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>Upgrade fails because the old Docker package is not automatically
+	removed.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>S3C-2465</p>
+      </td>
+      <td>
+	<p>Critical</p>
+      </td>
+      <td>
+	<p>Federation</p>
+      </td>
+      <td>
+	<p>Repd cannot find its database files when the database path contains a
+	trailing slash.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31889</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>membership</p>
+      </td>
+      <td>
+	<p>When a network partition lasts for several minutes, membershipd can
+	get stuck and require a manual restart of the service.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31795</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>installer</p>
+      </td>
+      <td>
+	<p>Running scality.sagentd.registered state can lead to upgrading
+	scality-node package without notice.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31730</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>bizio</p>
+      </td>
+      <td>
+	<p>biziod can crash and dump core following a repair helper run on the
+	daemon, if there are requests running.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31673</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>bizio</p>
+      </td>
+      <td>
+	<p>A deadlock in biziod statistics can occur when the daemon faces a
+	heavy load.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31672</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>node, srebuildd</p>
+      </td>
+      <td>
+	<p>On some orphans, srebuildd can return 404 instead of 422.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31160</p>
+      </td>
+      <td>
+	<p>Major</p>
+      </td>
+      <td>
+	<p>DLM</p>
+      </td>
+      <td>
+	<p>With DLM enabled, a network partition can cause SOFS connectors to
+	crash.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<p>RING-31733</p>
+      </td>
+      <td>
+	<p>Medium</p>
+      </td>
+      <td>
+	<p>DLM, membership</p>
+      </td>
+      <td>
+	<p>Upon receiving a single stop signal (SIGINT or SIGTERM), the
+	membershipd daemon now waits that local members disconnect before
+	stopping. A second signal causes immediate shutdown.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--</body>
+  </html>
+-->

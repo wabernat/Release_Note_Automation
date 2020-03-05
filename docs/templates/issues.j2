@@ -1,6 +1,7 @@
 <h2>{{ ctx.issue_type }} {% if ctx.issue_type != 'Improvements' %}Issues{% endif %}</h2>
 {% if ctx.tickets %}
 <table>
+<caption>{{ ctx.issue_type }} for {{ ctx.product.name }} {{ ctx.product.version }}</caption>
     <thead>
         <tr>
             <td>Key</td>
