@@ -17,7 +17,7 @@ layout:
   - common/ring_common.html
   - common/enhancements_intro.html
   - $templates/features.new
-  - common/legacy_enhancements/8.0.0.2-7.6.0.2.html
+  - common/legacy_enhancements/8.0.0.2-7.5.0.2.html
   - common/legacy_enhancements/8.0.0.1-7.6.0.1.html
   - common/legacy_enhancements/8.0.0.0-7.6.0.0.html
   - common/supported_environs.html
@@ -26,7 +26,7 @@ layout:
   - $templates/issues.improvement
   - $templates/issues.fixed
   - $templates/issues.known
-  - common/legacy_tickets/8.0.0.2-7.6.0.2.html
+  - common/legacy_tickets/8.0.0.2-7.5.0.2.html
   - common/legacy_tickets/8.0.0.1-7.6.0.1.html
   - common/legacy_tickets/8.0.0.0-7.6.0.0.html
   - common/footer.html
