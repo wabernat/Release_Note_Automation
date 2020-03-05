@@ -121,7 +121,7 @@ class JiraSearch:
                     self._fixed_filter,
                     self._equ_version_filter,
                     self._issue_type_filter_epic
-                ), reverse=True
+                )
             )
         ))
 
@@ -133,7 +133,7 @@ class JiraSearch:
                     self._fixed_filter,
                     self._equ_version_filter,
                     self._issue_type_filter_improvement
-                ), reverse=True
+                )
             )
         ))
 
@@ -186,19 +186,27 @@ class RingSearch(JiraSearch):
 
     @property
     def fixed(self):
-        return itertools.chain(super().fixed, self._s3c_search.fixed)
+        return self._sort_issues(
+            itertools.chain(super().fixed, self._s3c_search.fixed)
+        )
 
     @property
     def known(self):
-        return itertools.chain(super().known, self._s3c_search.known)
+        return self._sort_issues(
+            itertools.chain(super().known, self._s3c_search.known)
+        )
 
     @property
     def new_features(self):
-        return itertools.chain(super().new_features, self._s3c_search.new_features)
+        return self._sort_issues(
+            itertools.chain(super().new_features, self._s3c_search.new_features)
+        )
 
     @property
     def improvements(self):
-        return itertools.chain(super().improvements, self._s3c_search.improvements)
+        return self._sort_issues(
+            itertools.chain(super().improvements, self._s3c_search.improvements)
+        )
 
 
 PRODUCT_TO_SEARCH = {
@@ -208,5 +216,4 @@ PRODUCT_TO_SEARCH = {
 }
 
 def do_search(product, version):
-    # RING release notes contain both RING and S3C, but with different versions
     return PRODUCT_TO_SEARCH[product](version)
