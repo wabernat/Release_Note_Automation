@@ -7,6 +7,7 @@ from .assets import Book
 from .constants import PRODUCT_TO_CANONICAL
 from .context import build_context
 from .templates import get_template
+import datetime
 
 # For rendering internal app tempaltes
 def render_template(name, **kwargs):
@@ -31,6 +32,7 @@ def _render_html(book, ctx):
 
 def _render_pdf(book, ctx):
     pdf_opts = {
+        'footer-left': f'© {datetime.date.today().year} Scality. All rights reserved',
         'footer-right': '• [page]',
         'footer-line': '',
         'footer-font-size': '10'
