@@ -26,7 +26,7 @@ layout:
   - $templates/issues.improvement
   - $templates/issues.known
   - $templates/issues.fixed
-  - common/legacy_tickets/legacy_ticket_header.html
+  - common/legacy_ticket_header.html
   - common/legacy_tickets/8.0.0.2-7.5.0.2.html
   - common/legacy_tickets/8.0.0.1-7.5.0.1.html
   - common/legacy_tickets/8.0.0.0-7.5.0.0.html
