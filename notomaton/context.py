@@ -11,7 +11,7 @@ Context = namedtuple('Context', ['product', 'issues', 'style', 'images', 'is_das
 
 Issues = namedtuple('Issues', ['known', 'fixed', 'new_features', 'improvements'])
 
-Product = namedtuple('Product', ['name', 'canonical', 'version', 'doc_name'])
+Product = namedtuple('Product', ['name', 'canonical', 'version', 'doc_name', 'version_short'])
 
 RingProduct = namedtuple('RingProduct', ['name', 'canonical', 'version', 's3c_version', 'doc_name', 'version_short', 's3c_version_short'])
 
@@ -47,6 +47,7 @@ def _build_generic_product(product, version):
         name=PRODUCT_TO_NAME[product],
         canonical=PRODUCT_TO_CANONICAL[product],
         version=version,
+        version_short=trim_version(version),
         doc_name=PRODUCT_DOC_NAME[product]
 
     )
