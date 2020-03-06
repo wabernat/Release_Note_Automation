@@ -64,5 +64,5 @@ def build_context(product, version, dashboard=False):
         issues = build_issues(product, version),
         images = build_images(),
         is_dashboard=dashboard,
-        date=date.today().strftime('%B %d, %Y')
+        date=date.today().strftime('%-d %B, %Y')
     )
