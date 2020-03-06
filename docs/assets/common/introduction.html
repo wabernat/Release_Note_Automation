@@ -1,3 +1,11 @@
-<h1>New for {{ ctx.product.name }} Version {{ ctx.product.version }}</h1>
+{% if ctx.product.canonical == 'ring" %}
+
+<h2>New for {{ ctx.product.name }} {{ ctx.product.version }}/S3 Connector {{ ctx.product.s3c_version }}</h2>
+
+{% else %}
+
+<h2>New for {{ ctx.product.name }} {{ ctx.product.version }}</h2>
+
+{% endif %}
 
 {{ ctx.product.name }} introduces the following new features in release {{ ctx.product.version }}.
