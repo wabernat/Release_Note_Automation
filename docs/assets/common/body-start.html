@@ -13,9 +13,9 @@
         {% endif %}
       </a>
     </div>
-    {% if ctx.product.canonical == 'ring' %}}
+    {% if ctx.product.canonical == 'ring' %}
     <h1>RING 8 Release Notes</h1>
-    {% elif ctx.product.canonical != ring %}}
+    {% elif ctx.product.canonical != ring %}
     <h1>{{ ctx.product.name }} Release Notes</h1>
     {% endif %}
     <p><i>{{ ctx.product.name }} {{ ctx.product.version }}</i></p>
