@@ -1,8 +1,8 @@
 {% if ctx.tickets %}
 {% if ctx.product.name == 'RING'%}
-<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} {{ ctx.product.version }}/S3C {{ ctx.product.s3c_version }}</h2>
+<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} {{ ctx.product.version }}/S3 Connector {{ ctx.product.s3c_version }}</h2>
 {% else %}
-<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} Version {{ ctx.product.version }}</h2>
+<h2>{{ ctx.feature_type }} for {{ ctx.product.name }} {{ ctx.product.version }}</h2>
 {% endif %}
 
 {{ ctx.product.name }} introduces the following new features in release {{ ctx.product.version }}.
