@@ -20,9 +20,10 @@
     <div class="title">{{ ctx.product.name }} Release Notes</div>
     {% endif %}
     
-    <p><i><strong>{{ ctx.product.name }} {{ ctx.product.version }}</strong></i></p>
-
-    {% if ctx.product.canonical == 'ring' %}
-    <p><i><strong>S3 Connector {{ ctx.product.s3c_version }}</strong></i></p>
-	{% endif %}
-    <p>{{ ctx.date }}</p>
+    <div class="product">
+      <i><strong>{{ ctx.product.name }} {{ ctx.product.version }}</strong></i></br>
+      {% if ctx.product.canonical == 'ring' %}
+      <i><strong>S3 Connector {{ ctx.product.s3c_version }}</strong></i>
+      {% endif %}
+    </div>
+    <div class="date">{{ ctx.date }}</div>

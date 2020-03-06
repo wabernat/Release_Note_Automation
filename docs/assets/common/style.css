@@ -49,7 +49,7 @@ caption {
 }
 
 /*
- * header
+ * Front Page
  */
 
 div.title {
@@ -63,6 +63,13 @@ div.title {
     text-align: center;
 }
 
+div.product {
+    font-size: 14pt;
+}
+
+div.date {
+    font-size: 14pt;
+    text-align: right;
 
 /*
  * Body
