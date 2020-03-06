@@ -47,6 +47,20 @@ h6 {
 caption {
     text-align: left;
 }
+
+/*
+ * header
+ */
+
+div.title {
+    font-size: 4em;
+    font-family: 'Oswald';
+    color: orangered;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+
 /*
  * Body
 */
@@ -74,6 +88,14 @@ div.wrapper > p {
 body li {
     text-align: left;
     margin-left: 1em;
+}
+
+div.textbox {
+    border: 3px solid gray;
+    padding: 3px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
@@ -182,13 +204,6 @@ div.footer div.social img {
     height: 25px;
 }
 
-div.textbox {
-    border: 3px solid gray;
-    padding: 3px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 /* div.footer div.rightwrapper {
     display: flex;
@@ -225,7 +240,8 @@ div.footer div.rightwrapper img.social {
 }
 
 .headlogo {
-    width: 250px;
+    width: 25%;
+    text-align: center;
 }
 
 /* Complex Selectors */

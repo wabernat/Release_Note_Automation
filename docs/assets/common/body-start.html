@@ -15,9 +15,9 @@
     </div>
     
     {% if ctx.product.canonical == 'ring' %}
-    <h1>RING 8 Release Notes</h1>
+    <div class="title">RING 8 Release Notes</div>
     {% elif ctx.product.canonical != ring %}
-    <h1>{{ ctx.product.name }} Release Notes</h1>
+    <div class="title">{{ ctx.product.name }} Release Notes</div>
     {% endif %}
     
     <p><i><strong>{{ ctx.product.name }} {{ ctx.product.version }}</strong></i></p>
@@ -25,4 +25,4 @@
     {% if ctx.product.canonical == 'ring' %}
     <p><i><strong>S3 Connector {{ ctx.product.s3c_version }}</strong></i></p>
 	{% endif %}
-    <p><i>{{ ctx.date }}</i></p>
+    <p>{{ ctx.date }}</p>

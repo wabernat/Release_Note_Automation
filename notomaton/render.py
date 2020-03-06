@@ -35,7 +35,8 @@ def _render_pdf(book, ctx):
         'footer-left': f'© {datetime.date.today().year} Scality. All rights reserved',
         'footer-right': '• [page]',
         'footer-line': '',
-        'footer-font-size': '10'
+        'footer-font-size': '10',
+        'footer-spacing': '6' 
     }
     rendered_html = _render_html(book, ctx)
     return pdfkit.from_string(rendered_html, False, toc={}, options=pdf_opts, cover_first=True)
