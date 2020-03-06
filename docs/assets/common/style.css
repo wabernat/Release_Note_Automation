@@ -58,6 +58,8 @@ div.title {
     color: orangered;
     padding-top: 20px;
     padding-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -240,8 +242,10 @@ div.footer div.rightwrapper img.social {
 }
 
 .headlogo {
-    width: 25%;
-    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-righ: auto;
+    width: 400px;
 }
 
 /* Complex Selectors */
