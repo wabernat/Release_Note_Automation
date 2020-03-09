@@ -36,7 +36,7 @@ def _render_pdf(book, ctx):
         'footer-right': '• [page]',
         'footer-line': '',
         'footer-font-size': '10',
-        'footer-spacing': '6',
+#        'footer-spacing': '6',
         'margin-bottom': '6mm',
     }
     rendered_html = _render_html(book, ctx)
