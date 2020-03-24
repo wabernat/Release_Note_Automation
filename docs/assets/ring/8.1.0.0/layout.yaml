@@ -1,4 +1,4 @@
-#
+q#
 # This file specifies the order components should be added to the generated document.
 #
 # -- So where do the file names come from? --
@@ -14,7 +14,7 @@ style:
 layout:
   - common/header.html
   - common/body-start.html
-  - ring/{{ ctx.product.version }}/build_number.html
+  - ring/8.1.0.0/build_number.html
   - common/ring_common.html
   - common/enhancements_intro.html
   - $templates/features.new
