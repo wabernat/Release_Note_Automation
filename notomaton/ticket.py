@@ -1,41 +1,65 @@
 import re
 from collections import namedtuple
 from .constants import TicketType
+from functools import partial
+from .util.log import Log
+
+_log = Log('ticket')
 
 Ticket = namedtuple('Ticket', ['key', 'severity', 'components', 'description', 'fix_versions', 'type', 'title', 'in_release_notes'])
 
-CODE_BLOCK_REGEX = r'{code(?::\w+)?}'
-NO_FORMAT_REGEX = r'{noformat}'
+# Old JIRA format
+CODE_BLOCK_REGEX = r'{code(?::\w+)?}(.*?){code}' 
+NO_FORMAT_REGEX = r'{noformat}(.*?){noformat}'
+
+
 
 REPL_START = '<pre><code>'
 REPL_STOP = '</code></pre>'
 
-def _replace_tag(tag, repl, string):
-    new_string, replaced = re.subn(tag, repl, string, count=1)
-    return replaced == 1, new_string
+REPL_BLOCKS = {
+    'code_block_old': {
+        'regex': r'{code(?::\w+)?}(.*?){code}',
+        'replace': '<pre><code>{text}</code></pre>'
+    },
+    'no_format_old': {
+        'regex': r'{noformat}(.*?){noformat}',
+        'replace': '<pre><code>{text}</code></pre>'
+    },
+    'code_block': {
+        'regex': r' {{(.*?)}} ',
+        'replace': '<pre><code> {text} </code></pre>'
+    },
+    'italic_text': {
+        'regex': r' _(.*?)_ ',
+        'replace': '<i> {text} </i>'
+    },
+    'bold_text': {
+        'regex': r' \*(.*?)\* ',
+        'replace': '<b> {text} </b>'
+    },
+    'strikethru_text': {
+        'regex': r' -(.*?)- ',
+        'replace': '<strike> {text} </strike>'
+    }
+}
 
-def _replace_block(regex, string):
-    changed = True
-    new_string = string
-    while changed:
-        changed, new_string = _replace_tag(regex, REPL_START, new_string)
-        if changed: # If we replace a starting tag we require a end tag
-            changed, new_string = _replace_tag(regex, REPL_STOP, new_string)
-            if not changed:
-                _log.error('Unable to end tag for block!')
-                _log.debug(string)
-    return new_string
+def _format_block(tmpl, match):
+    return tmpl.format(text=match.group(1))
 
-def replace_no_format(string):
-    return _replace_block(NO_FORMAT_REGEX, string)
-
-def replace_code_block(string):
-    return _replace_block(CODE_BLOCK_REGEX, string)
+def _replace_block(block_type, text):
+    block = REPL_BLOCKS[block_type]
+    _repl_func = partial(_format_block, block['replace'])
+    replaced, count = re.subn(block['regex'], _repl_func, text, flags=re.S)
+    _log.debug('Replaced {count} occurrences of {block_type}')
+    return replaced
 
 def replace_jira_formatting(string):
     if string is None:
         return ''
-    return replace_code_block(replace_no_format(string))
+    for block_type in REPL_BLOCKS.keys():
+        string = _replace_block(block_type, string)
+    return string
 
 def safe_extract(ticket):
     ticket_type = TicketType(int(ticket.fields.issuetype.id))
