@@ -32,7 +32,7 @@ def _render_html(book, ctx):
 
 def _render_pdf(book, ctx):
     pdf_opts = {
-        'footer-left': f'© {datetime.date.today().year} Scality. All rights reserved',
+        'footer-left': f'© {datetime.date.today().year} Scality. All rights reserved\n\n',
         'footer-right': '• [page]',
         'footer-line': '',
         'footer-font-size': '10',
