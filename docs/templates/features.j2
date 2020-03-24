@@ -10,11 +10,10 @@
 
 {% for item in ctx.tickets %}
 {% if ctx.is_dashboard %}
-    {% set href = 'https://scality.atlassian.net/browse/' + item.key %}
+    <h3><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</a> {{ item.title }}</h3>
 {% else %}
-    {% set href = '#' %}
+    <h3>{{ item.key }} {{ item.title }}</h3>
 {% endif %}
-<h3><a target="_blank" href="{{ href }}">{{ item.key }}</a> {{ item.title }}</h3>
 <p>
     {{ item.description }}
 </p>
