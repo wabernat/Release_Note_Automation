@@ -1,11 +1,7 @@
 <h1>{{ ctx.issue_type }} {% if ctx.issue_type != 'Improvements' %}Issues{% endif %}</h1>
 {% if ctx.tickets %}
 <table>
-{% if ctx.product.name == 'RING'%}
-<caption>{{ ctx.issue_type }} for {{ ctx.product.name }} {{ ctx.product.version }}/S3 Connector {{ ctx.product.s3c_version }}</caption>
-{% else %}
 <caption>{{ ctx.issue_type }} for {{ ctx.product.name }} {{ ctx.product.version }}</caption>
-{% endif %}
     <thead>
         <tr>
             <td>Key</td>
@@ -17,7 +13,13 @@
 
     {% for item in ctx.tickets %}
     <tr>
-        <td class="nowrap"><p><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</p></td>
+        <td class="nowrap"><p>
+        {% if ctx.is_dashboard %}
+            <a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</a>
+        {% else %}
+            {{ item.key }}
+        {% endif %}
+        </p></td>
         <td><p>{{ item.severity }}</p></td>
         <td><p>{{ item.components|join(' ') }}</p></td>
         <td style="width=100"><p>{{ item.description }}</p></td>
