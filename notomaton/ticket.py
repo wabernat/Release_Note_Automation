@@ -51,7 +51,7 @@ def _replace_block(block_type, text):
     block = REPL_BLOCKS[block_type]
     _repl_func = partial(_format_block, block['replace'])
     replaced, count = re.subn(block['regex'], _repl_func, text, flags=re.S)
-    _log.debug('Replaced {count} occurrences of {block_type}')
+    _log.debug(f'Replaced {count} occurrences of {block_type}')
     return replaced
 
 def replace_jira_formatting(string):
