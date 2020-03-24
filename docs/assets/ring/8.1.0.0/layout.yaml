@@ -14,7 +14,7 @@ style:
 layout:
   - common/header.html
   - common/body-start.html
-  - ring/build_number.html
+  - ring/{{ ctx.product.version }}/build_number.html
   - common/ring_common.html
   - common/enhancements_intro.html
   - $templates/features.new
