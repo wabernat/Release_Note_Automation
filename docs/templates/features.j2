@@ -7,8 +7,14 @@
 
 {{ ctx.product.name }} introduces the following new features in release {{ ctx.product.version }}.
 
+
 {% for item in ctx.tickets %}
-<h3><a target="_blank" href="https://scality.atlassian.net/browse/{{ item.key }}">{{ item.key }}</a> {{ item.title }}</h3>
+{% if ctx.is_dashboard %}
+    {% set href = 'https://scality.atlassian.net/browse/' + item.key %}
+{% else %}
+    {% set href = '#' %}
+{% endif %}
+<h3><a target="_blank" href="{{ href }}">{{ item.key }}</a> {{ item.title }}</h3>
 <p>
     {{ item.description }}
 </p>
