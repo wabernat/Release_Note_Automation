@@ -32,12 +32,16 @@ def _render_html(book, ctx):
 
 def _render_pdf(book, ctx):
     pdf_opts = {
+        'page-size': 'Letter',
+        'margin-top': '12mm',
+        'margin-bottom': '12mm',
+        'margin-left': '12mm',
+        'margin-right': '12mm',
         'footer-left': f'© {datetime.date.today().year} Scality. All rights reserved',
         'footer-right': '• [page]',
         'footer-line': '',
         'footer-font-size': '10',
-#        'footer-spacing': '6',
-        'margin-bottom': '6mm',
+        'footer-spacing': '6mm',
     }
     rendered_html = _render_html(book, ctx)
     return pdfkit.from_string(rendered_html, False, toc={}, options=pdf_opts, cover_first=True)
